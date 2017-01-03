@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00897b</color>
+    <color name="colorPrimaryDark">#00695c</color>
+    <color name="colorAccent">#00bfa5</color>
+    <color name="colorNavigationBar">#009688</color>
+    <color name="colorForeground">#00796b</color>
+    <color name="colorSplash">#00796b</color>
+    <color name="btnPressColor"> #009688</color>
+    <color name="btnmenuPressColor">#004d40</color>
+    <color name="btnColor">#4db6ac</color>
+    <color name="colorCharsOverDarkBackground">#ffffff</color>
+    <color name="fam_colorshadow">#00695c</color>
+</resources>

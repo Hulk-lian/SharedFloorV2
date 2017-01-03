@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity__selection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jtcode.sharedfloor.Activity_Selection">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/A_SEL_ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/A_SEL_AppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/A_SEL_TabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/colorCharsOverDarkBackground"
+            app:tabSelectedTextColor="@color/colorAccent"
+            android:layout_gravity="center"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:fabSize="mini"
+        android:id="@+id/A_SEL_FAB"/>
+
+</android.support.design.widget.CoordinatorLayout>
