@@ -58,4 +58,5 @@
     <dimen name="typeItemItem_text_size">25dp</dimen>
     <dimen name="typeItemItem_margin">15dp</dimen>
     <dimen name="viewheight">1dp</dimen>
+    <dimen name="clean_margin_list">15dp</dimen>
 </resources>

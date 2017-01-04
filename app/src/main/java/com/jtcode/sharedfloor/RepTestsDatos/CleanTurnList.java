@@ -19,12 +19,15 @@ public class CleanTurnList {
         listTurn= new ArrayList<>();
 
         List<User> userList=UsersHomeLIST.getAll();
-        String[] places=new String[]{"cocina","baño","salon"};
+        String[] names= new String[]{"cocina","baño","salon"};
         String[] descrip=new String[]{"lipiar la cocina y tirar la basura de la cocina","limpiar el baño y tirar la basura del baño","limpiar el salon y los pasillos"};
 
         for ( int i=0;i<userList.size();i++) {
-
+            listTurn.add(new ClearTurn(userList.get(i).getName(),descrip[i],names[i]));
         }
 
+    }
+    public static List<ClearTurn> getAll(){
+        return listTurn;
     }
 }
