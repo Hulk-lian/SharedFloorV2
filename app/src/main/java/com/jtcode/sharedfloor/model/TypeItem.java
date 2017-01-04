@@ -8,6 +8,7 @@ public class TypeItem {
     public String getId(){
         return id;
     }
+
     public String getNameType() {
         return nameType;
     }
@@ -18,7 +19,6 @@ public class TypeItem {
 
     public TypeItem(String name){
         nameType= name;
-
     }
 
     @Override

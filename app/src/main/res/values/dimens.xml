@@ -37,12 +37,16 @@
 
     <!-- item -->
     <dimen name="item_margin">15dp</dimen>
-    <dimen name="item_text_size">30dp</dimen>
-    <dimen name="item_img_lateral_size">50dp</dimen>
+    <dimen name="item_primary_text_size">30dp</dimen>
+    <dimen name="item_secondary_text_size">15dp</dimen>
 
+    <!-- clean-->
+    <dimen name="clean_primary_text_size">25dp</dimen>
+    <dimen name="clean_secondary_text_size">15dp</dimen>
 
     <dimen name="home_img_user_width">40dp</dimen>
     <dimen name="home_img_user_heigth">40dp</dimen>
+
     <dimen name="home_text_sizeUser">18dp</dimen>
     <dimen name="home_text_marginUser">10dp</dimen>
     <dimen name="home_btndelete_margin_rigth">10dp</dimen>

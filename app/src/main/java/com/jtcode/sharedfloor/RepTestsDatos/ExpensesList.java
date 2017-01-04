@@ -33,7 +33,7 @@ public class ExpensesList {
         Random posRnd=new Random();
         int posRandom;
 
-        for (int i=0;i<10;i++){
+        for (int i=0;i<20;i++){
             posRandom=(int)(posRnd.nextDouble()*nombres.length);
 
             try {

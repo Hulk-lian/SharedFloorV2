@@ -3,27 +3,25 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:text="Element Name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ITEM_PurchaseEDTelemtName"
+        android:id="@+id/ITEM_PURCHASE_txvelemtName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="@dimen/item_text_size"
-        android:clickable="true"
-        android:layout_marginLeft="@dimen/item_margin"
-        android:layout_marginTop="@dimen/item_margin"
-        android:layout_marginBottom="@dimen/item_margin"/>
+        android:textSize="@dimen/item_primary_text_size"
+        android:layout_margin="@dimen/item_margin"/>
 
     <TextView
         android:text="type name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ITEM_PurchaseEDTelemtName"
-        android:layout_alignStart="@+id/ITEM_PurchaseEDTelemtName"
-        android:layout_below="@+id/ITEM_PurchaseEDTelemtName"
-        android:id="@+id/purchaseItemTXVtypeelement" />
+        android:layout_alignLeft="@+id/ITEM_PURCHASE_txvelemtName"
+        android:layout_alignStart="@+id/ITEM_PURCHASE_txvelemtName"
+        android:layout_below="@+id/ITEM_PURCHASE_txvelemtName"
+        android:id="@+id/ITEM_PURCHASE_txvtypeElemet"
+        android:textSize="@dimen/item_secondary_text_size"/>
 
 </RelativeLayout>

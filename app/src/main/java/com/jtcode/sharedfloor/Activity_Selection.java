@@ -51,10 +51,28 @@ public class Activity_Selection extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //fab in the 4 fragment action
+                switch (viewPager.getCurrentItem()){
+                    case 0:
+                        break;
 
+                    case 1:
+
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    case 3:
+
+                        break;
+                }
             }
         });
     }
+
+
     private void setIcon(){
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_expenses);
