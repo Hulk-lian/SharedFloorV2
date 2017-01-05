@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="errorImpExpenseInterface">debe implementar ExpenseInteraction</string>
+    <string name="pass_short">Contraseña demasiado corta, ha de tener al menos 8 carácteres</string>
+    <string name="empty_user">Campo del Usuario está vacío</string>
+    <string name="empty_pass">Campo de Contraseña está vacio</string>
+    <string name="login_error">Autentificacion Incorrecta</string>
+    <string name="user_not_found">El usuario no existe</string>
+    <string name="no_item_name">El nombre del elemento no puede estar vacío</string>
 </resources>

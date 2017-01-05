@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity__login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.jtcode.sharedfloor.login.Activity_Login">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/loginIMGVheight"
+            android:id="@+id/A_LOGIN_imglogo"
+            app:srcCompat="@drawable/imagen_carpet_logo"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/A_LOGIN_tilUsername"
+            android:layout_below="@id/A_LOGIN_imglogo"
+            android:layout_marginTop="@dimen/login_edt_margin_vertical_big"
+            android:layout_marginLeft="@dimen/login_edt_margin_hotizontal"
+            android:layout_marginRight="@dimen/login_edt_margin_hotizontal"
+            android:hint="@string/loginEDThintUsername">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="@dimen/login_edittext_size"
+                android:text="Usuario"
+                android:id="@+id/A_LOGIN_edtUsername" />
+
+        </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/A_LOGIN_tilPassword"
+                android:layout_below="@id/A_LOGIN_tilUsername"
+                android:hint="@string/loginEDThintPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/login_edt_margin_vertical_small"
+                android:layout_alignStart="@+id/A_LOGIN_tilUsername"
+                android:layout_alignEnd="@+id/A_LOGIN_tilUsername"
+                android:layout_alignLeft="@+id/A_LOGIN_tilUsername"
+                android:layout_alignRight="@+id/A_LOGIN_tilUsername">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/login_edittext_pass_size"
+                    android:inputType="textPassword"
+                    android:text="UpcuoEsLaClave1"
+                    android:id="@+id/A_LOGIN_edtPassword"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+         <Button
+             android:id="@+id/A_LOGIN_btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loginBTNOK"
+            android:background="@drawable/btn_shape"
+            android:layout_below="@id/A_LOGIN_tilPassword"
+            android:layout_centerHorizontal="true"
+             android:layout_marginTop="@dimen/login_btn_margin_top"
+            android:layout_alignStart="@+id/A_LOGIN_tilPassword"
+            android:layout_alignEnd="@+id/A_LOGIN_tilPassword"
+            android:layout_alignLeft="@+id/A_LOGIN_tilPassword"
+            android:layout_alignRight="@+id/A_LOGIN_tilPassword" />
+
+            <TextView
+                android:id="@+id/A_LOGIN_txvForgetPass"
+                android:text="@string/loginTXVlinkForget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/A_LOGIN_btnLogin"
+                android:layout_alignStart="@id/A_LOGIN_btnLogin"
+                android:layout_alignLeft="@id/A_LOGIN_btnLogin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:clickable="true"/>
+
+            <TextView
+                android:id="@+id/A_LOGIN_txvCreateAccount"
+                android:text="@string/loginTXVlinkRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/A_LOGIN_txvForgetPass"
+                android:layout_below="@id/A_LOGIN_btnLogin"
+                android:layout_alignEnd="@id/A_LOGIN_btnLogin"
+                android:layout_alignRight="@id/A_LOGIN_btnLogin"
+                android:clickable="true"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

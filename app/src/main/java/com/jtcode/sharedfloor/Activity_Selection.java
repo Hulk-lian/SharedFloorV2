@@ -6,13 +6,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.jtcode.sharedfloor.adapters.ViewPagerAdapter;
-import com.jtcode.sharedfloor.fragments.FragmentExpenses;
-import com.jtcode.sharedfloor.model.Expense;
+import com.jtcode.sharedfloor.fragments.FragmentsPurchaseList;
+import com.jtcode.sharedfloor.model.PurchaseItem;
 
-public class Activity_Selection extends AppCompatActivity{
+public class Activity_Selection extends AppCompatActivity implements FragmentsPurchaseList.PurchaseListInteraction{
 
 
     private TabLayout tabLayout;
@@ -43,6 +44,7 @@ public class Activity_Selection extends AppCompatActivity{
         tabLayout.setupWithViewPager(viewPager);
 
         setIcon();
+
         viewPager.setPageTransformer(true, new AnimationSwip());
 
         //FAB
@@ -80,4 +82,19 @@ public class Activity_Selection extends AppCompatActivity{
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_clean_turn);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+
+    @Override
+    public void onPurchaseItemLongClick(PurchaseItem item) {
+
+    }
 }

@@ -23,19 +23,18 @@ public class PurchaseList {
 
         List<TypeItem> typeItems=TypeItemList.getAll();
 
-        String[] nombre={"Prozac","una cabra","Papel higienico","Ambientador","ojo de triton" , "Kit - Kat","las 7 bolas de dragon","Papel de cocina","Cola-cao","servilletas"};
+        String[] nombre={"Prozac","una cabra","Papel higienico","Ambientador","ojo de triton" , "Donetes", "Kit - Kat","las 7 bolas de dragon","Papel de cocina","Cola-cao","servilletas"};
         Random posRnd=new Random();
-        int tipo=0,nombrepos=0;
+        int nombrepos=0;
 
         for (int i=0;i<20;i++){
             try {
                 nombrepos=(int)(posRnd.nextDouble()*nombre.length);
                 Thread.sleep(10);
-                tipo=(int)(posRnd.nextDouble()*typeItems.size());
 
             } catch (InterruptedException e) {e.printStackTrace();}
 
-            PurchaseItem p=(new PurchaseItem(nombre[nombrepos],typeItems.get(tipo)));
+            PurchaseItem p=(new PurchaseItem(nombre[nombrepos]));
 
             listaPurchase.add(p);
         }

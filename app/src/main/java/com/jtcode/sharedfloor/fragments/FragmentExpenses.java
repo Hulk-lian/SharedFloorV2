@@ -19,7 +19,7 @@ public class FragmentExpenses extends Fragment {
 
     ListView listExpenses;
     ExpenseAdapter expenseAdapter;
-    private ExpenseInteraction mListener;
+   // private ExpenseInteraction mListener;
     
     public static Fragment newInstance(Bundle args){
         FragmentExpenses frag = new FragmentExpenses();
@@ -49,16 +49,16 @@ public class FragmentExpenses extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-
+/*
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-       /* if (context instanceof ExpenseInteraction) {
+       /if (context instanceof ExpenseInteraction) {
             mListener = (ExpenseInteraction) context;
         } else {
             throw new RuntimeException(context.toString()
                     + R.string.errorImpExpenseInterface);
-        }*/
+        }
     }
 
     @Override
@@ -66,7 +66,7 @@ public class FragmentExpenses extends Fragment {
         super.onDetach();
        // mListener = null;
     }
-
+*/
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -79,6 +79,6 @@ public class FragmentExpenses extends Fragment {
      */
     public interface ExpenseInteraction {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Expense expense);
+        void onItemShortClick(Expense expense);
     }
 }

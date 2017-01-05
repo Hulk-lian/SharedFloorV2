@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/btnColorShape"/>
+            <corners android:bottomLeftRadius="@dimen/radiusbtn"
+                android:bottomRightRadius="150dp"
+                android:topLeftRadius="150dp"
+                android:topRightRadius="150dp"/>
+            <stroke android:color="@color/btnColorStroke"
+                android:width="@dimen/login_btn_stroke_width"/>
+        </shape>
+    </item>
+</selector>

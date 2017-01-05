@@ -8,11 +8,9 @@ import android.os.Parcelable;
 public class PurchaseItem implements Parcelable{
     private String id;
     private String name;
-    private TypeItem type;
 
-    public PurchaseItem(String name,TypeItem type){
+    public PurchaseItem(String name){
         this.name=name;
-        this.type=type;
     }
 
     protected PurchaseItem(Parcel in) {
@@ -38,10 +36,6 @@ public class PurchaseItem implements Parcelable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public TypeItem getType() {
-        return type;
     }
 
     public String getId() {

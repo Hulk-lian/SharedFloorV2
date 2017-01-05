@@ -2,9 +2,7 @@
     <string name="app_name">Shared Floor</string>
 
     <!--  -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_selector_fragments_">Shared Floor</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_selector">Shared Floor</string>
     <string name="loginOK">Autentificación correcta</string>
 
@@ -16,6 +14,8 @@
     <string name="expense_for_user">Por persona</string>
     <string name="expense_who_paid">Casero</string>
     <string name="expense_per_user_paid_text">Por persona</string>
+
+    <!-- Login -->
     <string name="loginEDThintUsername">Usuario</string>
     <string name="loginEDThintPassword">Contraseña</string>
     <string name="loginCHBRemember">Recordar</string>
@@ -32,9 +32,9 @@
 
     <string name="loginTXVlinkForget">
         <!-- test url -->
-
         <a href="https://www.google.es/">Olvidé mi contraseña</a>
     </string>
+
     <string name="home_title">HOGAR</string>
     <string name="expense_title">Gastos</string>
     <string name="purchase_title">Lista</string>

@@ -14,14 +14,4 @@
         android:textSize="@dimen/item_primary_text_size"
         android:layout_margin="@dimen/item_margin"/>
 
-    <TextView
-        android:text="type name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ITEM_PURCHASE_txvelemtName"
-        android:layout_alignStart="@+id/ITEM_PURCHASE_txvelemtName"
-        android:layout_below="@+id/ITEM_PURCHASE_txvelemtName"
-        android:id="@+id/ITEM_PURCHASE_txvtypeElemet"
-        android:textSize="@dimen/item_secondary_text_size"/>
-
 </RelativeLayout>

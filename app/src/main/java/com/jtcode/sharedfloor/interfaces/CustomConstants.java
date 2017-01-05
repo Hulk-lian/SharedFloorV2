@@ -12,6 +12,14 @@ public interface CustomConstants {
     String SORT_BY_DATE="name";
     String SORT_BY_AMOUNT="name";
 
+    //error code
+    int ALLOK=0;
+    int DATA_EMPTY=1;
+    int INCORRECTLOGIN=2;
+
+    //preferences
+    String USER="username";
+    String PASS="passord";
 
 
 

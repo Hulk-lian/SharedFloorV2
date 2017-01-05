@@ -58,6 +58,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return tabCount;
     }
 
+
+
     @Override
     public CharSequence getPageTitle(int position) {
         return context.getResources().getStringArray(R.array.titlesTabs)[position];

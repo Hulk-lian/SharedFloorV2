@@ -15,6 +15,15 @@
     <dimen name="home_img_margin_rigth">10dp</dimen>
     <dimen name="home_img_margin_bottom">10dp</dimen>
     <dimen name="home_img_margin">10dp</dimen>
+    <dimen name="home_img_user_width">40dp</dimen>
+    <dimen name="home_img_user_heigth">40dp</dimen>
+    <dimen name="home_text_sizeUser">18dp</dimen>
+    <dimen name="home_text_marginUser">10dp</dimen>
+    <dimen name="home_btndelete_margin_rigth">10dp</dimen>
+    <dimen name="home_img_delete_width">30dp</dimen>
+    <dimen name="home_img_delete_height">30dp</dimen>
+    <dimen name="home_img_delete_margin_rigth">15dp</dimen>
+    <dimen name="home_edt_text_size">20dp</dimen>
 
 
     <!--EXPENSES -->
@@ -26,11 +35,17 @@
 
     <!--Loggin -->
     <dimen name="loginIMGVheight">100dp</dimen>
-    <dimen name="login_edt_margin_top">30dp</dimen>
-    <dimen name="login_btn_margin_top">10dp</dimen>
+    <dimen name="login_edt_margin_hotizontal">20dp</dimen>
+    <dimen name="login_edt_margin_vertical_big">30dp</dimen>
+    <dimen name="login_edt_margin_vertical_small">15dp</dimen>
+    <dimen name="login_btn_margin_top">30dp</dimen>
+    <dimen name="login_btn_stroke_width">5dp</dimen>
+
+
+    <dimen name="login_edittext_size">30dp</dimen>
 
     <!-- Buttons dimens-->
-    <dimen name="radiusbtn">20dp</dimen>
+    <dimen name="radiusbtn">150dp</dimen>
     <dimen name="login_btn_padding">10dp</dimen>
     <dimen name="login_txv_margin_botton">20dp</dimen>
 
@@ -39,24 +54,16 @@
     <dimen name="item_margin">15dp</dimen>
     <dimen name="item_primary_text_size">30dp</dimen>
     <dimen name="item_secondary_text_size">15dp</dimen>
+    <dimen name="additem_text_size">25dp</dimen>
+    <dimen name="typeItemItem_text_size">25dp</dimen>
+    <dimen name="typeItemItem_margin">15dp</dimen>
 
     <!-- clean-->
     <dimen name="clean_primary_text_size">25dp</dimen>
     <dimen name="clean_secondary_text_size">15dp</dimen>
-
-    <dimen name="home_img_user_width">40dp</dimen>
-    <dimen name="home_img_user_heigth">40dp</dimen>
-
-    <dimen name="home_text_sizeUser">18dp</dimen>
-    <dimen name="home_text_marginUser">10dp</dimen>
-    <dimen name="home_btndelete_margin_rigth">10dp</dimen>
-    <dimen name="home_img_delete_width">30dp</dimen>
-    <dimen name="home_img_delete_height">30dp</dimen>
-    <dimen name="home_img_delete_margin_rigth">15dp</dimen>
-    <dimen name="home_edt_text_size">20dp</dimen>
-    <dimen name="additem_text_size">25dp</dimen>
-    <dimen name="typeItemItem_text_size">25dp</dimen>
-    <dimen name="typeItemItem_margin">15dp</dimen>
-    <dimen name="viewheight">1dp</dimen>
     <dimen name="clean_margin_list">15dp</dimen>
+
+    <dimen name="viewheight">1dp</dimen>
+    <dimen name="login_edittext_pass_size">20dp</dimen>
+
 </resources>
