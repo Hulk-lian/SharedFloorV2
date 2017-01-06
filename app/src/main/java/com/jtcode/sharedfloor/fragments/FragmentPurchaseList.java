@@ -2,27 +2,20 @@ package com.jtcode.sharedfloor.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jtcode.sharedfloor.Activity_Selection;
 import com.jtcode.sharedfloor.R;
 import com.jtcode.sharedfloor.adapters.PurchaseAdapter;
 import com.jtcode.sharedfloor.model.PurchaseItem;
 
 
-public class FragmentsPurchaseList extends Fragment {
+public class FragmentPurchaseList extends Fragment {
 
     private ListView purchaseList;
     private PurchaseAdapter purchaseAdapter;
@@ -30,7 +23,7 @@ public class FragmentsPurchaseList extends Fragment {
     private Context context;
 
     public static Fragment newInstance(Bundle args){
-        FragmentsPurchaseList frag = new FragmentsPurchaseList();
+        FragmentPurchaseList frag = new FragmentPurchaseList();
         if (args != null)
             frag.setArguments(args);
 
@@ -87,7 +80,7 @@ public class FragmentsPurchaseList extends Fragment {
      */
     public interface PurchaseListInteraction {
         // TODO: Update argument type and name
-        void onPurchaseItemLongClick(PurchaseItem item);//para que se muestre si se quiere eliminar o editar
+        boolean onPurchaseItemLongClick(PurchaseItem item);//para que se muestre si se quiere eliminar o editar
 
     }
 }

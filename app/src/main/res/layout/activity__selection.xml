@@ -38,6 +38,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:fabSize="mini"
-        android:id="@+id/A_SEL_FAB"/>
+        android:id="@+id/A_SEL_FAB"
+        android:onClick="clickFAB"/>
 
 </android.support.design.widget.CoordinatorLayout>

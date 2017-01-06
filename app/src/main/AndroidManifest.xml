@@ -11,7 +11,9 @@
         <activity android:name=".Activity_Selection">
 
         </activity>
-        <activity android:name=".login.Activity_Login"
+
+        <activity
+            android:name=".login.Activity_Login"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -20,6 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Activity_About"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
+
     </application>
 
 </manifest>

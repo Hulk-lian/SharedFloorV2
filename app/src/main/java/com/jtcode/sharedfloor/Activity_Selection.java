@@ -1,19 +1,22 @@
 package com.jtcode.sharedfloor;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.jtcode.sharedfloor.adapters.ViewPagerAdapter;
-import com.jtcode.sharedfloor.fragments.FragmentsPurchaseList;
+import com.jtcode.sharedfloor.fragments.FragmentPurchaseList;
+import com.jtcode.sharedfloor.login.Activity_Login;
 import com.jtcode.sharedfloor.model.PurchaseItem;
+import com.jtcode.sharedfloor.presenters.PurchasePresenter;
 
-public class Activity_Selection extends AppCompatActivity implements FragmentsPurchaseList.PurchaseListInteraction{
+public class Activity_Selection extends AppCompatActivity implements FragmentPurchaseList.PurchaseListInteraction{
 
 
     private TabLayout tabLayout;
@@ -21,11 +24,17 @@ public class Activity_Selection extends AppCompatActivity implements FragmentsPu
     private ViewPagerAdapter adapter;
     private FloatingActionButton fab;
 
+    //presenter
+    PurchasePresenter purchasePresenter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__selection);
         init();
+
+       // purchasePresenter= new PurchasePresenter(viewPager.);
     }
     private void init(){
 
@@ -49,31 +58,56 @@ public class Activity_Selection extends AppCompatActivity implements FragmentsPu
 
         //FAB
         fab=(FloatingActionButton)findViewById(R.id.A_SEL_FAB);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //fab in the 4 fragment action
-                switch (viewPager.getCurrentItem()){
-                    case 0:
-                        break;
-
-                    case 1:
-
-                        break;
-
-                    case 2:
-
-                        break;
-
-                    case 3:
-
-                        break;
-                }
-            }
-        });
     }
 
+    public void clickFAB(View view) {
+        switch (viewPager.getCurrentItem()){
+            case 0:
+                break;
+
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_common,menu);
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i=null;
+        boolean close=false;
+        switch (item.getItemId()){
+            case R.id.action_logout:
+                close=true;
+                i= new Intent(Activity_Selection.this,Activity_Login.class);
+                break;
+            case R.id.action_about:
+                i= new Intent(Activity_Selection.this,Activity_About.class);
+                break;
+        }
+        if(i!=null){
+            startActivity(i);
+            if(close){
+                finish();
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private void setIcon(){
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
@@ -94,7 +128,10 @@ public class Activity_Selection extends AppCompatActivity implements FragmentsPu
 
 
     @Override
-    public void onPurchaseItemLongClick(PurchaseItem item) {
+    public boolean onPurchaseItemLongClick(PurchaseItem item) {
+        boolean res=false;
 
+        return res;
     }
+
 }

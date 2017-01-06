@@ -2,7 +2,6 @@ package com.jtcode.sharedfloor.RepTestsDatos;
 
 
 import com.jtcode.sharedfloor.model.PurchaseItem;
-import com.jtcode.sharedfloor.model.TypeItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +20,6 @@ public class PurchaseList {
     private PurchaseList() {
         listaPurchase= new ArrayList<>();
 
-        List<TypeItem> typeItems=TypeItemList.getAll();
-
         String[] nombre={"Prozac","una cabra","Papel higienico","Ambientador","ojo de triton" , "Donetes", "Kit - Kat","las 7 bolas de dragon","Papel de cocina","Cola-cao","servilletas"};
         Random posRnd=new Random();
         int nombrepos=0;
@@ -40,8 +37,20 @@ public class PurchaseList {
         }
 
     }
+
     public static List<PurchaseItem> getAll(){
         return listaPurchase;
+    }
+    public static void add(PurchaseItem p){
+        listaPurchase.add(p);
+    }
+    public static void delete(PurchaseItem p){
+        listaPurchase.remove(p);
+    }
+    public static void replace(PurchaseItem old, PurchaseItem newitem){
+        int positem=listaPurchase.indexOf(old);
+        listaPurchase.remove(old);
+        listaPurchase.add(positem,newitem);
     }
 
 }

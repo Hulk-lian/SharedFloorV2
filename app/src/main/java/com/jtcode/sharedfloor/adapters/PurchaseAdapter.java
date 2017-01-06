@@ -18,24 +18,19 @@ import java.util.List;
 
 public class PurchaseAdapter extends ArrayAdapter<PurchaseItem>{
 
-    private ArrayList<PurchaseItem> strikes;
-
     public PurchaseAdapter(Context context) {
         super(context, R.layout.item_purchase_list);
         this.addAll(PurchaseList.getAll());
-        strikes= new ArrayList<>();
     }
 
-    public List<PurchaseItem> getSelectedItems(){
-        return strikes;
+    public void addItem(PurchaseItem item){
+        add(item);
+        notifyDataSetChanged();
     }
 
-    public void removeStrike(PurchaseItem item){
-        strikes.remove(item);
-    }
-
-    public void updateView(){
-
+    public void removeItem(PurchaseItem item){
+        remove(item);
+        notifyDataSetChanged();
     }
 
     @NonNull

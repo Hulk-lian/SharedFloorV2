@@ -50,6 +50,8 @@
     <string name="action_listTypes">Tipos de elementos</string>
     <string name="cleanBTNconfig">Configurar</string>
     <string name="euro">€</string>
+    <string name="deleteMens">Eliminado:</string>
+    <string name="action_close">Cerrar Sessón</string>
 
     <string-array name="titlesTabs">
         <item>@string/home_title</item>

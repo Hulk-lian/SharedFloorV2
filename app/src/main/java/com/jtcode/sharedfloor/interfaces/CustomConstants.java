@@ -21,6 +21,6 @@ public interface CustomConstants {
     String USER="username";
     String PASS="passord";
 
-
-
+    //links
+    String urlAbout="https://www.google.es";
 }

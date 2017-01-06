@@ -28,19 +28,21 @@ public class ExpensesList {
 
     private ExpensesList() {
         String[] nombres={"luz","Gas","Agua","Internet","Café","Limpieza"};
-        User usuario= new User("Usuarido","eluser69@suspenso.com","upcuo");
-        Home choso= new Home("choso de usuarido",usuario);
+        List<User> usuarios=UsersHomeLIST.getAll();
+
+        Home choso= new Home("choso de usuarido",usuarios.get(0));
         Random posRnd=new Random();
         int posRandom;
+        int posus;
 
         for (int i=0;i<20;i++){
             posRandom=(int)(posRnd.nextDouble()*nombres.length);
-
+            posus=(int)(posRnd.nextDouble()*usuarios.size());
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {e.printStackTrace();}
 
-            addExpense(new Expense(nombres[posRandom],posRandom*10.5,usuario,choso));
+            addExpense(new Expense(nombres[posRandom],posRandom*10.5,usuarios.get(posus),choso));
         }
     }
 
