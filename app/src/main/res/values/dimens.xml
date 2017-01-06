@@ -31,6 +31,7 @@
     <dimen name="expense_txv_margin">10dp</dimen>
     <dimen name="expense_txv_who_paid">2dp</dimen>
     <dimen name="expense_txv_secondary_size">20dp</dimen>
+    <dimen name="expense_margin">15dp</dimen>
 
 
     <!--Loggin -->
@@ -65,5 +66,6 @@
 
     <dimen name="viewheight">1dp</dimen>
     <dimen name="login_edittext_pass_size">20dp</dimen>
+    <dimen name="expense_text_size">30dp</dimen>
 
 </resources>

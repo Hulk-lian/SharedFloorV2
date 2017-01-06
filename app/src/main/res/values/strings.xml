@@ -12,8 +12,9 @@
     <!-- expenses -->
     <string name="expense_paid">Pagó:</string>
     <string name="expense_for_user">Por persona</string>
-    <string name="expense_who_paid">Casero</string>
     <string name="expense_per_user_paid_text">Por persona</string>
+    <string name="expense_nametil">Nombre del gasto</string>
+    <string name="expense_amounttil">Cantidad</string>
 
     <!-- Login -->
     <string name="loginEDThintUsername">Usuario</string>
