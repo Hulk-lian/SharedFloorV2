@@ -20,12 +20,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeUsersHolde
     private int nUsersonHome=0;
 
 
-    public  HomeAdapter(Context context)
+    public HomeAdapter(Context context)
     {
         this.context=context;
         this.userList=new ArrayList<>(UsersHomeLIST.getAll());
         this.nUsersonHome=UsersHomeLIST.getNumber();
     }
+
 
     @Override
     public HomeUsersHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,7 +37,41 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeUsersHolde
     @Override
     public void onBindViewHolder(HomeUsersHolder holder, int position) {
         holder.txvUserName.setText(userList.get(position).getName());
+    }
 
+    public boolean addUser(User user){
+        boolean res=true;
+
+        if(canAddItem(user)) {
+            this.addUser(user);
+            UsersHomeLIST.add(user);
+            notifyDataSetChanged();
+        }else{
+            res=false;
+        }
+        return res;
+    }
+
+    private boolean canAddItem(User u){
+        boolean canAdd=true;
+        if(UsersHomeLIST.containsItem(u)){
+            canAdd=false;
+        }
+        return  canAdd;
+    }
+
+    public boolean removeUser(User user){
+        this.userList.remove(user);
+        UsersHomeLIST.delete(user);
+        notifyDataSetChanged();
+
+        //debug
+        return true;
+    }
+
+    public void updateItem(){
+        this.userList.clear();
+        this.userList.addAll(UsersHomeLIST.getAll());
     }
 
     @Override

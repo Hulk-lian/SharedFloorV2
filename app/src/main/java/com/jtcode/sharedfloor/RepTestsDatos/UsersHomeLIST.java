@@ -25,6 +25,31 @@ public class UsersHomeLIST  {
     public static List<User> getAll(){
         return listUsers;
     }
+
+    public static boolean addUser(User u){
+        listUsers.add(u);
+
+        return true;
+    }
+
+    public static boolean containsItem(User u){
+        return listUsers.contains(u);
+    }
+
+    public static void add(User u){
+        listUsers.add(u);
+    }
+
+    public static void delete(User u){
+        listUsers.remove(u);
+    }
+
+    public static void replace(User old, User newUser){
+        int positem=listUsers.indexOf(old);
+        listUsers.remove(old);
+        listUsers.add(positem,newUser);
+    }
+
     public static int getNumber(){
         return listUsers.size();
     }

@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jtcode.sharedfloor.R;
 import com.jtcode.sharedfloor.adapters.PurchaseAdapter;
@@ -28,6 +33,12 @@ public class FragmentPurchaseList extends Fragment {
             frag.setArguments(args);
 
         return frag;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -50,8 +61,58 @@ public class FragmentPurchaseList extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        purchaseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                PurchaseItem tmp= purchaseAdapter.getItem(i);
+                purchaseAdapter.strikeItem(tmp,!tmp.getStrike());
+            }
+        });
+
+        purchaseList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(confirmation()) {
+                   if(purchaseAdapter.removeItem(purchaseAdapter.getItem(i))){
+                        //show message
+
+                       //debug
+                       Toast.makeText(context, "Purchase Item deleted", Toast.LENGTH_SHORT).show();
+                   }
+                    else{
+                       //show the error mens
+                   }
+                }
+
+                return true;
+            }
+        });
     }
 
+    private boolean confirmation(){
+        boolean res=true;
+
+
+        return res;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_purchaselist,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_purchaseList_sort_alph:
+                purchaseAdapter.sortAlph();
+                purchaseAdapter.notifyDataSetChanged();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -81,6 +142,7 @@ public class FragmentPurchaseList extends Fragment {
     public interface PurchaseListInteraction {
         // TODO: Update argument type and name
         boolean onPurchaseItemLongClick(PurchaseItem item);//para que se muestre si se quiere eliminar o editar
+
 
     }
 }

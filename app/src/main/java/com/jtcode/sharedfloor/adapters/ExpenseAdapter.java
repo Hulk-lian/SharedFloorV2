@@ -23,6 +23,40 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
         addAll(ExpensesList.getAll());
     }
 
+    public boolean addItem(Expense item){
+        boolean res=true;
+        if(canAddItem(item)) {
+            add(item);
+            ExpensesList.add(item);
+            notifyDataSetChanged();
+        }else{
+            res=false;
+        }
+        return res;
+    }
+
+    private boolean canAddItem(Expense e) {
+        boolean canAdd = true;
+        if (ExpensesList.containsItem(e)) {
+            canAdd = false;
+        }
+        return canAdd;
+    }
+
+    public boolean removeItem(Expense item){
+        remove(item);
+        ExpensesList.delete(item);
+        notifyDataSetChanged();
+
+        //debug
+        return true;
+    }
+
+    public void updateItems(){
+        this.clear();
+        this.addAll(ExpensesList.getAll());
+    }
+
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

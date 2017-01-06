@@ -3,6 +3,7 @@ package com.jtcode.sharedfloor.RepTestsDatos;
 
 import com.jtcode.sharedfloor.model.Expense;
 import com.jtcode.sharedfloor.model.Home;
+import com.jtcode.sharedfloor.model.PurchaseItem;
 import com.jtcode.sharedfloor.model.User;
 
 import java.util.ArrayList;
@@ -48,5 +49,23 @@ public class ExpensesList {
 
     public  static List<Expense> getAll(){
      return expenseList;
+    }
+
+    public static void add(Expense expense){
+        expenseList.add(expense);
+    }
+
+    public static void delete(Expense expense){
+        expenseList.remove(expense);
+    }
+
+    public static void replace(Expense old, Expense newExpense){
+        int posItem=expenseList.indexOf(old);
+        expenseList.remove(old);
+        expenseList.add(posItem,newExpense);
+    }
+
+    public static boolean containsItem(Expense expense){
+        return expenseList.contains(expense);
     }
 }

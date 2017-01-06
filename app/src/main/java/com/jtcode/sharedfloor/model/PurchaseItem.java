@@ -3,14 +3,19 @@ package com.jtcode.sharedfloor.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
+import com.jtcode.sharedfloor.RepTestsDatos.PurchaseList;
 
 
-public class PurchaseItem implements Parcelable{
+public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
     private String id;
     private String name;
+    private boolean strike;
 
     public PurchaseItem(String name){
         this.name=name;
+        this.strike=false;
     }
 
     protected PurchaseItem(Parcel in) {
@@ -42,6 +47,27 @@ public class PurchaseItem implements Parcelable{
         return id;
     }
 
+    public boolean getStrike(){
+        return this.strike;
+    }
+    public void setStrike(boolean strike){
+        this.strike=strike;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean res=false;
+        PurchaseItem p;
+        if(obj!= null){
+            if(obj instanceof PurchaseItem){
+                p=(PurchaseItem)obj;
+                if(this.name.equalsIgnoreCase(p.name)){
+                    res=true;
+                }
+            }
+        }
+        return res;
+    }
 
     @Override
     public int describeContents() {
@@ -52,5 +78,10 @@ public class PurchaseItem implements Parcelable{
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
         parcel.writeString(name);
+    }
+
+    @Override
+    public int compareTo(@NonNull PurchaseItem p) {
+        return this.name.compareToIgnoreCase(p.getName());
     }
 }

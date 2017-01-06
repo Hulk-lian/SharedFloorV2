@@ -52,6 +52,7 @@
     <string name="euro">€</string>
     <string name="deleteMens">Eliminado:</string>
     <string name="action_close">Cerrar Sessón</string>
+    <string name="action_sortbyalph">Orden alfabetico</string>
 
     <string-array name="titlesTabs">
         <item>@string/home_title</item>
