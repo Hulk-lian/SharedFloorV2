@@ -1,6 +1,7 @@
 package com.jtcode.sharedfloor;
 
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,6 +13,7 @@ import android.view.View;
 
 import com.jtcode.sharedfloor.adapters.ViewPagerAdapter;
 import com.jtcode.sharedfloor.fragments.FragmentPurchaseList;
+import com.jtcode.sharedfloor.interfaces.CustomConstants;
 import com.jtcode.sharedfloor.login.Activity_Login;
 import com.jtcode.sharedfloor.model.PurchaseItem;
 import com.jtcode.sharedfloor.presenters.PurchasePresenter;
@@ -56,24 +58,65 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
 
         viewPager.setPageTransformer(true, new AnimationSwip());
 
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+            @Override
+            public void onPageSelected(int position) {
+                fabChangeIcon(position);
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
         //FAB
         fab=(FloatingActionButton)findViewById(R.id.A_SEL_FAB);
+
+    }
+
+    private void fabChangeIcon(int position){
+
+        switch (position) {
+            case 0:
+                fab.show();
+                fab.setImageResource(R.drawable.ic_add_user);
+                break;
+            case 1:
+                fab.show();
+                fab.setImageResource(R.drawable.ic_add_expense);
+                break;
+            case 2:
+                fab.show();
+                fab.setImageResource(R.drawable.ic_add_item);
+                break;
+            case 3:
+                fab.hide();
+                break;
+        }
+        AnimationSwip.rotateAnimation(fab);
+
     }
 
     public void clickFAB(View view) {
+        Intent i=null;
+        int requestCode=0;
         switch (viewPager.getCurrentItem()){
+
             case 0:
+
                 break;
 
             case 1:
-
+                requestCode=CustomConstants.ADDEXPENSE;
+                i=new Intent(Activity_Selection.this,Activity_ExpenseManage.class);
+                startActivityForResult(i,requestCode);
                 break;
 
             case 2:
-
-                break;
-
-            case 3:
 
                 break;
         }
@@ -130,8 +173,14 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
     @Override
     public boolean onPurchaseItemLongClick(PurchaseItem item) {
         boolean res=false;
-
+        //show confirmation
         return res;
     }
+
+    //addExpense
+    //editExpense
+
+    //delete user
+    //add user
 
 }

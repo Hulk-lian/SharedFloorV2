@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="mini"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        android:id="@+id/A_EXPENSE_MANAGER_fab" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,8 +32,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/P_EXPENSE_tilAmount"
-                android:layout_below="@+id/P_EXPENSE_tilNameExpense"
+                android:id="@+id/A_EXPENSE_MANAGER_tilAmount"
+                android:layout_below="@+id/A_EXPENSE_MANAGER_tilNameExpense"
                 android:hint="@string/expense_amounttil"
                 android:layout_marginTop="@dimen/expense_margin">
 
@@ -33,13 +43,13 @@
                     android:inputType="numberDecimal"
                     android:textSize="@dimen/expense_text_size"
                     android:text=""
-                    android:id="@+id/P_EXPENSE_edtAmountExpense" />
+                    android:id="@+id/A_EXPENSE_MANAGER_edtAmountExpense" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/P_EXPENSE_tilNameExpense"
+                android:id="@+id/A_EXPENSE_MANAGER_tilNameExpense"
                 android:hint="@string/expense_nametil">
 
                 <EditText
@@ -48,32 +58,34 @@
                     android:inputType="text"
                     android:textSize="@dimen/expense_text_size"
                     android:text=""
-                    android:id="@+id/P_EXPENSE_edtUsername" />
+                    android:id="@+id/A_EXPENSE_MANAGER_edtExpenseName" />
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/P_EXPENSE_tilAmount"
-                android:layout_marginTop="@dimen/expense_margin">
+                android:layout_marginTop="@dimen/expense_margin"
+                android:layout_below="@+id/A_EXPENSE_MANAGER_tilAmount"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingTop="@dimen/expense_margin">
 
                 <TextView
                     android:text="@string/expense_paid"
                     android:textSize="@dimen/expense_text_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/P_EXPENSE_labelwhopaid"
+                    android:id="@+id/A_EXPENSE_MANAGER_labelwhopaid"
                     android:layout_weight="0" />
 
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/P_EXPENSE_spinerwhoPaid"
+                    android:id="@+id/A_EXPENSE_MANAGER_spinerwhoPaid"
                     android:layout_weight="1" />
 
             </LinearLayout>
-
 
 
         </RelativeLayout>

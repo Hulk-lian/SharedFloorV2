@@ -6,12 +6,21 @@ public interface CustomConstants {
     String KEY_BUNDL_TEXT_TAB="textTab";
     String ADAPTER_KEY="adapter";
 
-    //Sort types
+    String KEY_EXPENSE="expense";
+    String KEY_ITEM="item";
+    String KEY_USER="user";
 
+    //rquestCode
+    int ADDUSER=1;
+    int ADDEXPENSE=2;
+    int ADDITEM=3;
+
+
+    //Sort types
     String SORT_BY_NAME="name";
-    String SORT_BY_TYPE="name";
-    String SORT_BY_DATE="name";
-    String SORT_BY_AMOUNT="name";
+    String SORT_BY_TYPE="type";
+    String SORT_BY_DATE="date";
+    String SORT_BY_AMOUNT="amount";
 
     //error code
     int ALLOK=0;

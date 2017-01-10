@@ -2,6 +2,8 @@ package com.jtcode.sharedfloor;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 
 public class AnimationSwip implements ViewPager.PageTransformer {
     private static final float MIN_SCALE = 0.85f;
@@ -39,5 +41,13 @@ public class AnimationSwip implements ViewPager.PageTransformer {
             // This page is way off-screen to the right.
             view.setAlpha(0);
         }
+    }
+
+    public static void rotateAnimation(View v){
+        // Create an animation instance
+        final Animation an = new RotateAnimation(-45, 0, v.getWidth()/2, v.getHeight()/2);
+        an.setDuration(100);
+        v.clearAnimation();
+        v.startAnimation(an);
     }
 }

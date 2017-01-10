@@ -29,6 +29,11 @@
 
         </activity>
 
+        <activity android:name=".Activity_ExpenseManage"
+            android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/expense_text_size"
         android:gravity="center"
+        android:id="@+id/L_SPINNER_edt"
         />
 
 </RelativeLayout>

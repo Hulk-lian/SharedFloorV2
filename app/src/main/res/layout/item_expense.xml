@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ITEM_EXPENSE_txvWhoPaid"
-            android:text="@string/expense_who_paid"
+            android:text="quien pago"
             android:layout_toRightOf="@id/ITEM_EXPENSE_txvPaid"
             android:layout_alignBaseline="@+id/ITEM_EXPENSE_txvPaid"
             android:textSize="@dimen/expense_txv_secondary_size"/>
