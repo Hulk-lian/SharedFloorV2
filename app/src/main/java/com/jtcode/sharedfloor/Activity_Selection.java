@@ -1,8 +1,11 @@
 package com.jtcode.sharedfloor;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.drm.DrmStore;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,22 +15,22 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jtcode.sharedfloor.adapters.ViewPagerAdapter;
+import com.jtcode.sharedfloor.fragments.FragmentExpenses;
 import com.jtcode.sharedfloor.fragments.FragmentPurchaseList;
 import com.jtcode.sharedfloor.interfaces.CustomConstants;
+import com.jtcode.sharedfloor.interfaces.SendStuff;
 import com.jtcode.sharedfloor.login.Activity_Login;
-import com.jtcode.sharedfloor.model.PurchaseItem;
-import com.jtcode.sharedfloor.presenters.PurchasePresenter;
 
-public class Activity_Selection extends AppCompatActivity implements FragmentPurchaseList.PurchaseListInteraction{
+
+public class Activity_Selection extends AppCompatActivity implements FragmentPurchaseList.PurchaseListInteraction,FragmentExpenses.ExpenseInteraction{
 
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     private FloatingActionButton fab;
-
-    //presenter
-    PurchasePresenter purchasePresenter;
+    CoordinatorLayout parent;
+    SendStuff sendExpense;
 
 
     @Override
@@ -35,9 +38,8 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__selection);
         init();
-
-       // purchasePresenter= new PurchasePresenter(viewPager.);
     }
+
     private void init(){
 
         tabLayout=(TabLayout)findViewById(R.id.A_SEL_TabLayout);
@@ -46,6 +48,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
             tabLayout.addTab(tabLayout.newTab().setText(title));
         }
 
+        parent=(CoordinatorLayout)findViewById(R.id.A_SELECTION_selection);
         viewPager=(ViewPager) findViewById(R.id.A_SEL_ViewPager);
         adapter=new ViewPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount(),Activity_Selection.this);
         viewPager.setAdapter(adapter);
@@ -117,7 +120,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
                 break;
 
             case 2:
-
+                dialogAddItem();
                 break;
         }
     }
@@ -170,17 +173,59 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
     }
 
 
+
     @Override
-    public boolean onPurchaseItemLongClick(PurchaseItem item) {
-        boolean res=false;
-        //show confirmation
-        return res;
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case CustomConstants.ADDEXPENSE:
+                    if(resultCode==RESULT_OK){
+
+                    }
+                break;
+        }
     }
 
-    //addExpense
-    //editExpense
+    private void dialogAddItem(){
+        View v=getLayoutInflater().inflate(R.layout.layout_additem_dialog,null);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(this.getString(R.string.additem_dialog_title));
+        builder.setMessage(this.getString(R.string.additem_dialog_message));
+        builder.setView(v);
+        builder.setPositiveButton(R.string.additem_btn_ok, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            showToast(getString(R.string.additem_snackbar));
+
+            }
+        });
+
+        builder.show();
+    }
+
+
+        //fragments
+    @Override
+    public void sendMensageExpense(String mens) {
+        showToast(getResources().getString(R.string.deleteitem_snackbarmens)+mens);
+    }
+
+    @Override
+    public void sendMensagePurchaseList(String mens) {
+        showToast(getResources().getString(R.string.deleteexpense_snackbar)+mens);
+    }
+
+
+    public void showToast(String mens){
+        Snackbar.make(parent,mens,Snackbar.LENGTH_SHORT).show();
+    }
+
 
     //delete user
     //add user
+
+
 
 }

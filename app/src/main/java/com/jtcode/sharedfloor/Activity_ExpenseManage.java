@@ -1,6 +1,5 @@
 package com.jtcode.sharedfloor;
 
-
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -12,7 +11,6 @@ import android.widget.Spinner;
 import com.jtcode.sharedfloor.adapters.SpinnerAdapter;
 import com.jtcode.sharedfloor.interfaces.CustomConstants;
 import com.jtcode.sharedfloor.model.Expense;
-
 public class Activity_ExpenseManage extends AppCompatActivity{
 
     TextInputLayout tilName,tilAmount;
@@ -53,7 +51,13 @@ public class Activity_ExpenseManage extends AppCompatActivity{
     }
 
     private void chargeData(){
+        tilName.getEditText().setText(expenseTmp.getName());
+        tilAmount.getEditText().setText(String.valueOf(expenseTmp.getAmount()));
 
+        if (!expenseTmp.getPaid().getName().equals(null)) {
+            int spinnerPosition = spinnerAdapter.getPosition( expenseTmp.getPaid().getName());
+            spnPaid.setSelection(spinnerPosition);
+        }
     }
     private void save(){
         if(okAllData()){

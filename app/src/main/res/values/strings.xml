@@ -40,12 +40,21 @@
     <string name="expense_title">Gastos</string>
     <string name="purchase_title">Lista</string>
     <string name="clean_title">Limpieza</string>
-    <string name="title_activity_general_setting_activity">Settings</string>
+    <string name="title_activity_general_setting_activity">Configuracion</string>
     <string name="action_about">Acerca de</string>
     <string name="additem_btn_ok">Añadir</string>
-    <string name="additem_txv_type">Tipo</string>
-    <string name="additem_txv_title">Añadir elemento a la lista</string>
-    <string name="additem_txv_name">Nombre del elemento</string>
+
+    <!-- add item -->
+    <string name="additem_dialog_title">Añadir elemento a la lista</string>
+    <string name="additem_dialog_message">Nombre del elemento</string>
+
+    <!-- delete item-->
+    <string name="deleteitem_dialog_title">Eliminar</string>
+    <string name="deleteitem_dialog_mens">Eliminar de la lista el elemento: </string>
+    <string name="deleteitem_dialog_cancelbtn">No Eliminar</string>
+    <string name="deleteitem_dialog_okbtn">Eliminar</string>
+    <string name="deleteitem_snackbarmens">Eliminado:</string>
+
     <string name="generalSettinghome_title">Configuracion del hogar</string>
     <string name="generalSetting_listTypes">Lista de tipos de elementos</string>
     <string name="action_listTypes">Tipos de elementos</string>
@@ -54,6 +63,11 @@
     <string name="deleteMens">Eliminado:</string>
     <string name="action_close">Cerrar Sessón</string>
     <string name="action_sortbyalph">Orden alfabetico</string>
+    <string name="deleteexpense_dialog_title">Eliminar Gasto</string>
+    <string name="deleteexpense_dialog_mens">Eliminar el gasto:</string>
+    <string name="deleteexpense_snackbar">Eliminado el gasto:</string>
+    <string name="additem_snackbar">Añadido el elemento</string>
+
 
     <string-array name="titlesTabs">
         <item>@string/home_title</item>

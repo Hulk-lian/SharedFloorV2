@@ -14,6 +14,7 @@ import com.jtcode.sharedfloor.Activity_Selection;
 import com.jtcode.sharedfloor.R;
 import com.jtcode.sharedfloor.interfaces.ILogin;
 
+
 public class Activity_Login extends AppCompatActivity implements ILogin.msgView{
 
     Intent intentCont;
@@ -26,6 +27,7 @@ public class Activity_Login extends AppCompatActivity implements ILogin.msgView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__login);
+
         init();
     }
     private void init(){
@@ -55,9 +57,6 @@ public class Activity_Login extends AppCompatActivity implements ILogin.msgView{
         finish();
     }
 
-    private void showMensError(){
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();//debug
-    }
 
     ///////////////////////debug/////////////////////
     //falta quitar el error de campo vacio una vez que sale y se introduce algo se quite el error
@@ -75,8 +74,7 @@ public class Activity_Login extends AppCompatActivity implements ILogin.msgView{
                 tilPassword.setError(error);
                 break;
 
-            case 0: //Login Correcto
-                Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+            case 0: //Login ok
                 login();
                 break;
         }

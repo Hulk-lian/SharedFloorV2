@@ -1,8 +1,12 @@
 package com.jtcode.sharedfloor.model;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
+import java.util.Date;
 
 
-public class Expense{
+public class Expense implements Parcelable{
 
     private Home home;//the home of the expense
 
@@ -10,7 +14,29 @@ public class Expense{
     private String name;
     private double amount;
     private double amountPerUser;
+    private String dateExpense;
     private User paid;//the user who paid the expense
+
+    protected Expense(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        amount = in.readDouble();
+        amountPerUser = in.readDouble();
+        dateExpense = in.readString();
+        paid = in.readParcelable(User.class.getClassLoader());
+    }
+
+    public static final Creator<Expense> CREATOR = new Creator<Expense>() {
+        @Override
+        public Expense createFromParcel(Parcel in) {
+            return new Expense(in);
+        }
+
+        @Override
+        public Expense[] newArray(int size) {
+            return new Expense[size];
+        }
+    };
 
     //region getter and setter
     public String getName() {
@@ -50,13 +76,23 @@ public class Expense{
     }
 //endregion
 
+    public String getDateExpense() {
+        return dateExpense;
+    }
+
+    public void setDateExpense(String dateExpense) {
+        this.dateExpense = dateExpense;
+    }
+
     //constructor
-    public Expense(String name,Double amount,User paid,Home homeE){
+    public Expense(String name,Double amount,User paid,Home homeE,String dateExpense){
         this.name=name;
         this.amount=amount;
         this.amountPerUser=amount/homeE.getNumberUsers();
         this.paid=paid;
         this.home=homeE;
+        this.dateExpense=dateExpense;
+
     }
 
 
@@ -66,4 +102,19 @@ public class Expense{
             return Double.compare(expense1.getAmount(),expense2.getAmount());
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeDouble(amount);
+        dest.writeDouble(amountPerUser);
+        dest.writeString(dateExpense);
+        dest.writeParcelable(paid, flags);
+    }
 }

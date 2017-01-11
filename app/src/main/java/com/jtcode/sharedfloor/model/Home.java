@@ -30,6 +30,10 @@ public class Home {
         return numberUsers;
     }
 
+    public void addUserToHome(){
+        this.numberUsers++;
+    }
+
     public Home(String name,User administrator){
         //id
         this.name=name;

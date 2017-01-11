@@ -14,6 +14,7 @@ public interface CustomConstants {
     int ADDUSER=1;
     int ADDEXPENSE=2;
     int ADDITEM=3;
+    int EDITEXPENSE=4;
 
 
     //Sort types
