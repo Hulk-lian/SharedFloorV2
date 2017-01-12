@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jtcode.sharedfloor.R;
 import com.jtcode.sharedfloor.RepTestsDatos.PurchaseList;
+import com.jtcode.sharedfloor.model.Expense;
 import com.jtcode.sharedfloor.model.PurchaseItem;
 
 import java.util.ArrayList;

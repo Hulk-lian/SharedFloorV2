@@ -66,6 +66,9 @@ public class Expense implements Parcelable{
     public double getAmountPerUser() {
         return amountPerUser;
     }
+    public void setAmountPerUser(int nUser){
+        this.amountPerUser=this.amount/nUser;
+    }
 
     public User getPaid() {
         return paid;
@@ -74,7 +77,6 @@ public class Expense implements Parcelable{
     public void setPaid(User paid) {
         this.paid = paid;
     }
-//endregion
 
     public String getDateExpense() {
         return dateExpense;
@@ -83,6 +85,7 @@ public class Expense implements Parcelable{
     public void setDateExpense(String dateExpense) {
         this.dateExpense = dateExpense;
     }
+//endregion
 
     //constructor
     public Expense(String name,Double amount,User paid,Home homeE,String dateExpense){

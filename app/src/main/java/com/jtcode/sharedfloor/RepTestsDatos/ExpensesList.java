@@ -71,8 +71,7 @@ public class ExpensesList {
 
     public static void replace(Expense old, Expense newExpense){
         int posItem=expenseList.indexOf(old);
-        expenseList.remove(old);
-        expenseList.add(posItem,newExpense);
+        expenseList.set(posItem,newExpense);
     }
 
     public static boolean containsItem(Expense expense){

@@ -35,6 +35,17 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
         return res;
     }
 
+    public boolean editItem(Expense old,Expense newEx){
+        boolean res= true;
+        if(canAddItem(newEx)){
+
+            ExpensesList.replace(old,newEx);
+            notifyDataSetChanged();
+
+        }else {res=false;}
+            return res;
+    }
+
     private boolean canAddItem(Expense e) {
         boolean canAdd = true;
         if (ExpensesList.containsItem(e)) {

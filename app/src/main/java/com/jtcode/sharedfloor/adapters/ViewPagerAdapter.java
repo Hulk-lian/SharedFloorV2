@@ -20,10 +20,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private Context context;
     Fragment fragmentShow;
 
-    public ViewPagerAdapter(FragmentManager fm,int tabCount,Context context){
+    HomeAdapter homeAdapter;
+    ExpenseAdapter expenseAdapter;
+    PurchaseAdapter purchaseAdapter;
+
+    public ViewPagerAdapter(FragmentManager fm,int tabCount,Context context,PurchaseAdapter purchaseAdapter,ExpenseAdapter expenseAdapter, HomeAdapter homeAdapter){
         super(fm);
         this.tabCount=tabCount;
         this.context=context;
+        this.homeAdapter=homeAdapter;
+        this.expenseAdapter=expenseAdapter;
+        this.purchaseAdapter=purchaseAdapter;
     }
 
     public Fragment getFragment(){
@@ -37,17 +44,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         switch (position){
             case 0:
                 bundle.putString(CustomConstants.KEY_BUNDL_TEXT_TAB, context.getResources().getString(R.string.home_title));
-                fragmentShow= FragmentHome.newInstance(bundle);
+                fragmentShow= FragmentHome.newInstance(bundle,this.homeAdapter);
                 break;
 
             case 1:
                 bundle.putString(CustomConstants.KEY_BUNDL_TEXT_TAB, context.getResources().getString(R.string.expense_title));
-                fragmentShow= FragmentExpenses.newInstance(bundle);
+                fragmentShow= FragmentExpenses.newInstance(bundle,this.expenseAdapter);
                 break;
 
             case 2:
                 bundle.putString(CustomConstants.KEY_BUNDL_TEXT_TAB, context.getResources().getString(R.string.purchase_title));
-                fragmentShow= FragmentPurchaseList.newInstance(bundle);
+                fragmentShow= FragmentPurchaseList.newInstance(bundle,this.purchaseAdapter);
                 break;
 
             case 3:

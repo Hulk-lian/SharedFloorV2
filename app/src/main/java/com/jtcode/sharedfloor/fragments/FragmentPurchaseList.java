@@ -21,22 +21,24 @@ import android.widget.Toast;
 
 import com.jtcode.sharedfloor.R;
 import com.jtcode.sharedfloor.adapters.PurchaseAdapter;
+import com.jtcode.sharedfloor.interfaces.SendStuff;
 import com.jtcode.sharedfloor.model.PurchaseItem;
 
 
-public class FragmentPurchaseList extends Fragment {
+public class FragmentPurchaseList extends Fragment implements SendStuff.SendItem{
 
     private ListView purchaseList;
-    private PurchaseAdapter purchaseAdapter;
+    private static PurchaseAdapter purchaseAdapter;
     private PurchaseListInteraction callBack;
 
     private Context context;
 
-    public static Fragment newInstance(Bundle args) {
+    public static Fragment newInstance(Bundle args,PurchaseAdapter adapter) {
         FragmentPurchaseList frag = new FragmentPurchaseList();
         if (args != null)
             frag.setArguments(args);
 
+        purchaseAdapter=adapter;
         return frag;
     }
 
@@ -53,7 +55,7 @@ public class FragmentPurchaseList extends Fragment {
 
         context = view.getContext();
 
-        purchaseAdapter = new PurchaseAdapter(view.getContext());
+       // purchaseAdapter = new PurchaseAdapter(view.getContext());
 
         purchaseList = (ListView) view.findViewById(R.id.F_PURCHASE_list);
         purchaseList.setAdapter(purchaseAdapter);
@@ -140,6 +142,11 @@ public class FragmentPurchaseList extends Fragment {
     public void onDetach() {
         super.onDetach();
         callBack = null;
+    }
+
+    @Override
+    public void sendItem(PurchaseItem item) {
+        this.purchaseAdapter.addItem(item);
     }
 
     /**

@@ -26,8 +26,6 @@ public class SpinnerAdapter extends ArrayAdapter<CharSequence> {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.layout_spinner_item, parent, false);
         TextView make = (TextView) row.findViewById(R.id.L_SPINNER_edt);
-        Typeface myTypeFace = Typeface.createFromAsset(getContext().getAssets(), "font.ttf");
-        make.setTypeface(myTypeFace);
         make.setText(getItem(position));
         return row;
     }
@@ -36,11 +34,8 @@ public class SpinnerAdapter extends ArrayAdapter<CharSequence> {
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.layout_spinner_item, parent, false);
-
         TextView make = (TextView) row.findViewById(R.id.L_SPINNER_edt);
 
-        Typeface myTypeFace = Typeface.createFromAsset(getContext().getAssets(), "font.ttf");
-        make.setTypeface(myTypeFace);
         make.setText(getItem(position));
         return row;
     }

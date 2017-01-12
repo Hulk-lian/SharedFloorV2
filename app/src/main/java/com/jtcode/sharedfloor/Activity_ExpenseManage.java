@@ -1,13 +1,16 @@
 package com.jtcode.sharedfloor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.jtcode.sharedfloor.RepTestsDatos.UsersHomeLIST;
 import com.jtcode.sharedfloor.adapters.SpinnerAdapter;
 import com.jtcode.sharedfloor.interfaces.CustomConstants;
 import com.jtcode.sharedfloor.model.Expense;
@@ -61,12 +64,21 @@ public class Activity_ExpenseManage extends AppCompatActivity{
     }
     private void save(){
         if(okAllData()){
-
+            createExpense();
+            Intent i= new Intent();
+            i.putExtra(CustomConstants.KEY_EXPENSE,expenseTmp);
+            setResult(RESULT_OK,i);
+            finish();
         }
+    }
+    private void createExpense(){
+        expenseTmp.setName(tilName.getEditText().getText().toString());
+        expenseTmp.setAmount(Double.parseDouble(tilAmount.getEditText().getText().toString()));
+        //expense user who paid
+        expenseTmp.setAmountPerUser(UsersHomeLIST.getNumber());
     }
     private boolean okAllData(){
         boolean res=true;
-
         if(TextUtils.isEmpty(tilName.getEditText().getText().toString().trim()) ||
                 TextUtils.isEmpty(tilAmount.getEditText().getText().toString().trim())){
             res=false;

@@ -17,14 +17,15 @@ import com.jtcode.sharedfloor.adapters.HomeAdapter;
 
 public class FragmentHome extends Fragment {
 
-    EditText edtHomeName;
-    RecyclerView listUserOnHome;
-    HomeAdapter adapterHome;
+    private EditText edtHomeName;
+    private RecyclerView listUserOnHome;
+    private static HomeAdapter adapterHome;
 
-    public static Fragment newInstance(Bundle args){
+    public static Fragment newInstance(Bundle args,HomeAdapter ahome){
         FragmentHome frag = new FragmentHome();
         if (args != null)
             frag.setArguments(args);
+        adapterHome=ahome;
         return frag;
     }
 
@@ -34,7 +35,7 @@ public class FragmentHome extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView=inflater.inflate(R.layout.fragment_home,container,false);
 
-        adapterHome= new HomeAdapter(rootView.getContext());
+        //adapterHome= new HomeAdapter(rootView.getContext());
 
         edtHomeName=(EditText)rootView.findViewById(R.id.F_HOME_edtNameHome);
         edtHomeName.setEnabled(false);

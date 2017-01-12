@@ -26,17 +26,17 @@ import com.jtcode.sharedfloor.interfaces.SendStuff;
 import com.jtcode.sharedfloor.model.Expense;
 
 
-public class FragmentExpenses extends Fragment implements SendStuff.SendExpense {
+public class FragmentExpenses extends Fragment{
 
-    ListView listExpenses;
-    ExpenseAdapter expenseAdapter;
+    private ListView listExpenses;
+    private static ExpenseAdapter expenseAdapter;
    private ExpenseInteraction callBack;
     
-    public static Fragment newInstance(Bundle args){
+    public static Fragment newInstance(Bundle args,ExpenseAdapter eAdapter){
         FragmentExpenses frag = new FragmentExpenses();
         if (args != null)
             frag.setArguments(args);
-
+        expenseAdapter=eAdapter;
         return frag;
     }
 
@@ -49,7 +49,7 @@ public class FragmentExpenses extends Fragment implements SendStuff.SendExpense 
 
         listExpenses=(ListView)rootView.findViewById(R.id.F_EXPENSE_list);
 
-        expenseAdapter= new ExpenseAdapter(rootView.getContext());
+        //expenseAdapter= new ExpenseAdapter(rootView.getContext());
 
         listExpenses.setAdapter(expenseAdapter);
 
@@ -63,10 +63,7 @@ public class FragmentExpenses extends Fragment implements SendStuff.SendExpense 
         listExpenses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i= new Intent(getActivity(), Activity_ExpenseManage.class);
-                Expense etemp=expenseAdapter.getItem(position);
-                i.putExtra(CustomConstants.KEY_EXPENSE,etemp);
-                getActivity().startActivityForResult(i,CustomConstants.EDITEXPENSE);
+                callBack.editExpense(expenseAdapter.getItem(position));
             }
         });
 
@@ -95,7 +92,6 @@ public class FragmentExpenses extends Fragment implements SendStuff.SendExpense 
         builder.setNegativeButton(R.string.deleteitem_dialog_cancelbtn, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
 
@@ -119,16 +115,6 @@ public class FragmentExpenses extends Fragment implements SendStuff.SendExpense 
         callBack = null;
     }
 
-    @Override
-    public void sendNewExpense() {
-
-    }
-
-    @Override
-    public void sendEditedExpense() {
-
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -141,5 +127,6 @@ public class FragmentExpenses extends Fragment implements SendStuff.SendExpense 
      */
     public interface ExpenseInteraction {
         void sendMensageExpense(String mens);
+        void editExpense(Expense oldexp);
     }
 }

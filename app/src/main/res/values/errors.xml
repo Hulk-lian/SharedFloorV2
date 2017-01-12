@@ -7,4 +7,5 @@
     <string name="login_error">Autentificacion Incorrecta</string>
     <string name="user_not_found">El usuario no existe</string>
     <string name="no_item_name">El nombre del elemento no puede estar vacío</string>
+    <string name="error_item_empty_name">Error al insertar: nombre vacío</string>
 </resources>
