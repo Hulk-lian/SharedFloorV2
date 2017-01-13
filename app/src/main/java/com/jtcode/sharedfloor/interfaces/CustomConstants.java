@@ -34,4 +34,7 @@ public interface CustomConstants {
 
     //links
     String urlAbout="https://www.google.es";
+
+    //format date
+    String DATEFORMAT="yyyy/MM/dd HH:mm:ss";
 }

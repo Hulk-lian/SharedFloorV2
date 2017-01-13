@@ -2,11 +2,15 @@ package com.jtcode.sharedfloor.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.jtcode.sharedfloor.interfaces.CustomConstants;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
-import java.util.Date;
 
 
-public class Expense implements Parcelable{
+public class Expense implements Parcelable, Comparable<Expense>{
 
     private Home home;//the home of the expense
 
@@ -15,7 +19,11 @@ public class Expense implements Parcelable{
     private double amount;
     private double amountPerUser;
     private String dateExpense;
-    private User paid;//the user who paid the expense
+    private String paid;//the user who paid the expense
+
+    public Expense(){
+
+    }
 
     protected Expense(Parcel in) {
         id = in.readString();
@@ -23,7 +31,22 @@ public class Expense implements Parcelable{
         amount = in.readDouble();
         amountPerUser = in.readDouble();
         dateExpense = in.readString();
-        paid = in.readParcelable(User.class.getClassLoader());
+        paid = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeDouble(amount);
+        dest.writeDouble(amountPerUser);
+        dest.writeString(dateExpense);
+        dest.writeString(paid);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Expense> CREATOR = new Creator<Expense>() {
@@ -67,14 +90,14 @@ public class Expense implements Parcelable{
         return amountPerUser;
     }
     public void setAmountPerUser(int nUser){
-        this.amountPerUser=this.amount/nUser;
+        this.amountPerUser=Math.round(this.amount/nUser);
     }
 
-    public User getPaid() {
+    public String getPaid() {
         return paid;
     }
 
-    public void setPaid(User paid) {
+    public void setPaid(String paid) {
         this.paid = paid;
     }
 
@@ -88,7 +111,7 @@ public class Expense implements Parcelable{
 //endregion
 
     //constructor
-    public Expense(String name,Double amount,User paid,Home homeE,String dateExpense){
+    public Expense(String name,Double amount,String paid,Home homeE,String dateExpense){
         this.name=name;
         this.amount=amount;
         this.amountPerUser=amount/homeE.getNumberUsers();
@@ -106,18 +129,27 @@ public class Expense implements Parcelable{
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+    public static final Comparator<Expense> DATE_SORT=new Comparator<Expense>() {
+        @Override
+        public int compare(Expense lhs, Expense rhs) {
+            DateFormat format= new SimpleDateFormat(CustomConstants.DATEFORMAT);
+            try {
+                return format.parse(rhs.getDateExpense()).compareTo(format.parse(lhs.getDateExpense()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    };
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeDouble(amount);
-        dest.writeDouble(amountPerUser);
-        dest.writeString(dateExpense);
-        dest.writeParcelable(paid, flags);
+    public int compareTo(Expense another) {
+        DateFormat format= new SimpleDateFormat(CustomConstants.DATEFORMAT);
+        try {
+            return format.parse(this.getDateExpense()).compareTo(format.parse(another.getDateExpense()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

@@ -14,6 +14,11 @@ import com.jtcode.sharedfloor.RepTestsDatos.UsersHomeLIST;
 import com.jtcode.sharedfloor.adapters.SpinnerAdapter;
 import com.jtcode.sharedfloor.interfaces.CustomConstants;
 import com.jtcode.sharedfloor.model.Expense;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Activity_ExpenseManage extends AppCompatActivity{
 
     TextInputLayout tilName,tilAmount;
@@ -57,8 +62,8 @@ public class Activity_ExpenseManage extends AppCompatActivity{
         tilName.getEditText().setText(expenseTmp.getName());
         tilAmount.getEditText().setText(String.valueOf(expenseTmp.getAmount()));
 
-        if (!expenseTmp.getPaid().getName().equals(null)) {
-            int spinnerPosition = spinnerAdapter.getPosition( expenseTmp.getPaid().getName());
+        if (!expenseTmp.getPaid().equals(null)) {
+            int spinnerPosition = spinnerAdapter.getPosition( expenseTmp.getPaid());
             spnPaid.setSelection(spinnerPosition);
         }
     }
@@ -72,10 +77,17 @@ public class Activity_ExpenseManage extends AppCompatActivity{
         }
     }
     private void createExpense(){
-        expenseTmp.setName(tilName.getEditText().getText().toString());
-        expenseTmp.setAmount(Double.parseDouble(tilAmount.getEditText().getText().toString()));
-        //expense user who paid
-        expenseTmp.setAmountPerUser(UsersHomeLIST.getNumber());
+        DateFormat df=new SimpleDateFormat(CustomConstants.DATEFORMAT);
+        Date date= new Date();
+        if(expenseTmp==null)
+            expenseTmp=new Expense();
+
+            expenseTmp.setDateExpense(df.format(date));
+            expenseTmp.setName(tilName.getEditText().getText().toString());
+            expenseTmp.setAmount(Double.parseDouble(tilAmount.getEditText().getText().toString()));
+            expenseTmp.setPaid(spnPaid.getSelectedItem().toString());
+            expenseTmp.setAmountPerUser(UsersHomeLIST.getNumber());
+
     }
     private boolean okAllData(){
         boolean res=true;

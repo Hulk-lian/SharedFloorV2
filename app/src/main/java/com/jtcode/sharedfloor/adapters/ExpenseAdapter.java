@@ -20,14 +20,16 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
 
     public ExpenseAdapter(Context context) {
         super(context, R.layout.fragment_expense);
+        ExpensesList.sort();
         addAll(ExpensesList.getAll());
     }
 
     public boolean addItem(Expense item){
         boolean res=true;
         if(canAddItem(item)) {
-            add(item);
             ExpensesList.add(item);
+            ExpensesList.sort();
+            updateItems();
             notifyDataSetChanged();
         }else{
             res=false;
@@ -36,14 +38,11 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
     }
 
     public boolean editItem(Expense old,Expense newEx){
-        boolean res= true;
-        if(canAddItem(newEx)){
-
-            ExpensesList.replace(old,newEx);
-            notifyDataSetChanged();
-
-        }else {res=false;}
-            return res;
+        ExpensesList.replace(old,newEx);
+        ExpensesList.sort();
+        updateItems();
+        notifyDataSetChanged();
+        return true;
     }
 
     private boolean canAddItem(Expense e) {
@@ -87,7 +86,7 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
             //vinculate
             expenseHolder.txvnameExp=(TextView)item.findViewById(R.id.ITEM_EXPENSE_txvName);
             expenseHolder.txvamountExp=(TextView)item.findViewById(R.id.ITEM_EXPENSE_txvAmount);
-            expenseHolder.txvwhopaindExp=(TextView)item.findViewById(R.id.ITEM_EXPENSE_txvWhoPaid);
+            expenseHolder.txvwhopaidExp=(TextView)item.findViewById(R.id.ITEM_EXPENSE_txvWhoPaid);
             expenseHolder.txvpriceperuserExp=(TextView)item.findViewById(R.id.ITEM_EXPENSE_txvAmountPerUser);
 
             item.setTag(expenseHolder);
@@ -98,13 +97,13 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
 
         expenseHolder.txvnameExp.setText(getItem(position).getName());
         expenseHolder.txvamountExp.setText(String.valueOf(getItem(position).getAmount()));
-        expenseHolder.txvwhopaindExp.setText(getItem(position).getPaid().getName());
+        expenseHolder.txvwhopaidExp.setText(getItem(position).getPaid());
         expenseHolder.txvpriceperuserExp.setText(String.valueOf(getItem(position).getAmountPerUser()));
 
         return item;
     }
 
     class ExpenseHolder {
-        TextView txvnameExp,txvamountExp,txvwhopaindExp,txvpriceperuserExp;
+        TextView txvnameExp,txvamountExp,txvwhopaidExp,txvpriceperuserExp;
     }
 }
