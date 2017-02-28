@@ -37,4 +37,6 @@ public interface CustomConstants {
 
     //format date
     String DATEFORMAT="yyyy/MM/dd HH:mm:ss";
+
+    String TIMEINMILIS="dateMilis";
 }

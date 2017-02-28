@@ -41,9 +41,9 @@ public class User implements Parcelable{
     }
 
 
-    public User (String name,String email,String password){
+    public User (String name,String password){
         this.name=name;
-        this.password =email;
+        this.password =password;
     }
 
     @Override

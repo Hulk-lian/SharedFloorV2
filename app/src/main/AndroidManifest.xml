@@ -15,24 +15,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".login.Activity_Login"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-
-        <activity android:name=".Activity_About"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".Activity_About"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity
+            android:name=".Activity_ExpenseManage"
+            android:screenOrientation="portrait"></activity>
 
-        </activity>
-
-        <activity android:name=".Activity_ExpenseManage"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <provider
+            android:name=".provider.Provider"
+            android:authorities="com.jtcode.sharedfloor"/>
 
     </application>
 
