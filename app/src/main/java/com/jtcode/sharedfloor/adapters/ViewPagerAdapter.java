@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.jtcode.sharedfloor.R;
-import com.jtcode.sharedfloor.fragments.FragmentCleanTurn;
+//import com.jtcode.sharedfloor.fragments.FragmentCleanTurn;
 import com.jtcode.sharedfloor.fragments.FragmentExpenses;
 import com.jtcode.sharedfloor.fragments.FragmentHome;
 import com.jtcode.sharedfloor.fragments.FragmentPurchaseList;
@@ -57,10 +57,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 fragmentShow= FragmentPurchaseList.newInstance(bundle,this.purchaseAdapter);
                 break;
 
-            case 3:
+           /* case 3:
                 bundle.putString(CustomConstants.KEY_BUNDL_TEXT_TAB, context.getResources().getString(R.string.clean_title));
                 fragmentShow= FragmentCleanTurn.newInstance(bundle);
-                break;
+                break;*/
         }
         return fragmentShow;
     }

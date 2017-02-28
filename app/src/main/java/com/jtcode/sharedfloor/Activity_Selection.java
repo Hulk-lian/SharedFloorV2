@@ -1,6 +1,4 @@
 package com.jtcode.sharedfloor;
-
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,9 +25,7 @@ import com.jtcode.sharedfloor.login.Activity_Login;
 import com.jtcode.sharedfloor.model.Expense;
 import com.jtcode.sharedfloor.model.PurchaseItem;
 
-
 public class Activity_Selection extends AppCompatActivity implements FragmentPurchaseList.PurchaseListInteraction,FragmentExpenses.ExpenseInteraction{
-
 
     //adapters
     HomeAdapter homeAdapter;
@@ -56,8 +52,8 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
 
         //memopry to adapter
         purchaseAdapter= new PurchaseAdapter(this);
-        expenseAdapter= new ExpenseAdapter(this);
-        homeAdapter= new HomeAdapter(this);
+        //expenseAdapter= new ExpenseAdapter(this);
+        homeAdapter= new HomeAdapter(this,R.layout.item_home_user);
 
         tabLayout=(TabLayout)findViewById(R.id.A_SEL_TabLayout);
 
@@ -113,9 +109,9 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
                 fab.show();
                 fab.setImageResource(R.drawable.ic_add_item);
                 break;
-            case 3:
+          /*  case 3:
                 fab.hide();
-                break;
+                break;*/
         }
         AnimationSwip.rotateAnimation(fab);
 
@@ -182,7 +178,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_expenses);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_pruchase_list);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_clean_turn);
+       // tabLayout.getTabAt(3).setIcon(R.drawable.ic_clean_turn);
     }
 
     @Override
@@ -202,11 +198,11 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case CustomConstants.ADDEXPENSE:
-                    expenseAdapter.addItem((Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
+                   // expenseAdapter.addItem((Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
                     break;
 
                 case CustomConstants.EDITEXPENSE:
-                    expenseAdapter.editItem(expensetemp, (Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
+                   // expenseAdapter.editItem(expensetemp, (Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
                     expensetemp=null;
                     break;
         }
@@ -229,7 +225,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (edtemp.getText().toString().trim().length() != 0) {
-                    purchaseAdapter.addItem(new PurchaseItem(edtemp.getText().toString()));
+                   // purchaseAdapter.addItem(new PurchaseItem(edtemp.getText().toString()));
                     showToast(getString(R.string.additem_snackbar)+": "+edtemp.getText().toString());
                 }else{
                     showToast(getString(R.string.error_item_empty_name));
@@ -244,30 +240,28 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         //fragments
     @Override
     public void sendMensageExpense(String mens) {
-        showToast(getResources().getString(R.string.deleteitem_snackbarmens)+mens);
+        showToast(getResources().getString(R.string.deleteexpense_snackbar)+mens);
     }
 
     @Override
     public void sendMensagePurchaseList(String mens) {
-        showToast(getResources().getString(R.string.deleteexpense_snackbar)+mens);
+        showToast(getResources().getString(R.string.deleteitem_snackbarmens)+mens);
     }
 
     @Override
     public void editExpense(Expense oldexp) {
         this.expensetemp=oldexp;
         openManageExpense(oldexp,CustomConstants.EDITEXPENSE,CustomConstants.KEY_EXPENSE);
-
     }
 
+    //add user
+    public void addUser(){
+
+    }
 
     public void showToast(String mens){
         Snackbar.make(parent,mens,Snackbar.LENGTH_SHORT).show();
     }
-
-
-    //delete user
-    //add user
-
 
 
 }

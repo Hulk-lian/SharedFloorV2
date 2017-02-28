@@ -13,13 +13,13 @@
     <include layout="@layout/layout_home_title"
             android:id="@+id/include" />
 
-    <android.support.v7.widget.RecyclerView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/F_HOME_ReciclerViewUseronHome"
+        android:id="@+id/F_HOME_ListViewUseronHome"
         android:layout_below="@+id/include">
 
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 
 
 </RelativeLayout>

@@ -10,13 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.jtcode.sharedfloor.R;
-import com.jtcode.sharedfloor.RepTestsDatos.WhoPaidList;
 
 
 public class SpinnerAdapter extends ArrayAdapter<CharSequence> {
 
     public SpinnerAdapter(Context context) {
-        super(context,R.layout.layout_spinner_item,WhoPaidList.getAll());
+        super(context,R.layout.layout_spinner_item);
     }
 
     @NonNull

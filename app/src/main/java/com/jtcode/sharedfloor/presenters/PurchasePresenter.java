@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 
 import com.jtcode.sharedfloor.R;
-import com.jtcode.sharedfloor.RepTestsDatos.PurchaseList;
 import com.jtcode.sharedfloor.interfaces.IPurchaseItemPresenter;
 import com.jtcode.sharedfloor.model.PurchaseItem;
 
@@ -21,33 +20,32 @@ public class PurchasePresenter implements IPurchaseItemPresenter {
 
     @Override
     public void addItem(PurchaseItem item) {
-        PurchaseList.add(item);
+
         view.showPurchaseList();
     }
 
     @Override
     public void deleteItem(PurchaseItem item) {
-        PurchaseList.delete(item);
         view.showMessage(context.getResources().getString(R.string.deleteMens),item);
         loadItems();
     }
 
     @Override
     public PurchaseItem getPurchaseItem(int item) {
-        return PurchaseList.getAll().get(item);
+        return null;
     }
 
     @Override
     public void loadItems() {
-        if(PurchaseList.getAll().isEmpty())
+       /* if(PurchaseList.getAll().isEmpty())
             view.showEmptyState(true);
         else
-            view.showPurchaseList();
+            view.showPurchaseList();*/
     }
 
     @Override
     public void updateItem(PurchaseItem itemold, PurchaseItem itemnew) {
-        PurchaseList.replace(itemold,itemnew);
+       //PurchaseList.replace(itemold,itemnew);
     }
 
     @Override

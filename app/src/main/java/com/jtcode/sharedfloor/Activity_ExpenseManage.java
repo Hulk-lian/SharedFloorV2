@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.jtcode.sharedfloor.RepTestsDatos.UsersHomeLIST;
 import com.jtcode.sharedfloor.adapters.SpinnerAdapter;
 import com.jtcode.sharedfloor.interfaces.CustomConstants;
 import com.jtcode.sharedfloor.model.Expense;
@@ -86,7 +85,7 @@ public class Activity_ExpenseManage extends AppCompatActivity{
             expenseTmp.setName(tilName.getEditText().getText().toString());
             expenseTmp.setAmount(Double.parseDouble(tilAmount.getEditText().getText().toString()));
             expenseTmp.setPaid(spnPaid.getSelectedItem().toString());
-            expenseTmp.setAmountPerUser(UsersHomeLIST.getNumber());
+           // expenseTmp.setAmountPerUser();
 
     }
     private boolean okAllData(){

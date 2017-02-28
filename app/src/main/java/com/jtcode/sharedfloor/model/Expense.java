@@ -12,8 +12,6 @@ import java.util.Comparator;
 
 public class Expense implements Parcelable, Comparable<Expense>{
 
-    private Home home;//the home of the expense
-
     private String id;
     private String name;
     private double amount;
@@ -70,14 +68,6 @@ public class Expense implements Parcelable, Comparable<Expense>{
         this.name = name;
     }
 
-    public Home getHome() {
-        return home;
-    }
-
-    public void setHome(Home home) {
-        this.home = home;
-    }
-
     public double getAmount() {
         return amount;
     }
@@ -111,12 +101,11 @@ public class Expense implements Parcelable, Comparable<Expense>{
 //endregion
 
     //constructor
-    public Expense(String name,Double amount,String paid,Home homeE,String dateExpense){
+    public Expense(String name,Double amount,String paid,int userscount,String dateExpense){
         this.name=name;
         this.amount=amount;
-        this.amountPerUser=amount/homeE.getNumberUsers();
+        this.amountPerUser=amount/userscount;
         this.paid=paid;
-        this.home=homeE;
         this.dateExpense=dateExpense;
 
     }

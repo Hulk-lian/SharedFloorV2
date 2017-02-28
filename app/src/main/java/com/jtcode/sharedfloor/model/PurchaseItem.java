@@ -5,8 +5,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import com.jtcode.sharedfloor.RepTestsDatos.PurchaseList;
-
 
 public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
     private String id;

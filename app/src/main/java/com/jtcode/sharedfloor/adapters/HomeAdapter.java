@@ -1,90 +1,45 @@
 package com.jtcode.sharedfloor.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.jtcode.sharedfloor.R;
-import com.jtcode.sharedfloor.RepTestsDatos.UsersHomeLIST;
-import com.jtcode.sharedfloor.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
+public class HomeAdapter extends CursorAdapter{
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeUsersHolder>{
-    Context context;
-    ArrayList<User> userList=null;
-    private int nUsersonHome=0;
-
-
-    public HomeAdapter(Context context)
-    {
-        this.context=context;
-        this.userList=new ArrayList<>(UsersHomeLIST.getAll());
-        this.nUsersonHome=UsersHomeLIST.getNumber();
-    }
-
-
-    @Override
-    public HomeUsersHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(this.context).inflate(R.layout.item_home_user,null);
-        return new HomeUsersHolder(view);
+    int layout;
+    public HomeAdapter(Context context, int layout) {
+        super(context, null, layout);
+        this.layout=layout;
     }
 
     @Override
-    public void onBindViewHolder(HomeUsersHolder holder, int position) {
-        holder.txvUserName.setText(userList.get(position).getName());
-    }
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        LayoutInflater inflater=LayoutInflater.from(context);
 
-    public boolean addUser(User user){
-        boolean res=true;
+        View rootView=inflater.inflate(layout,parent,false);
 
-        if(canAddItem(user)) {
-            this.addUser(user);
-            UsersHomeLIST.add(user);
-            notifyDataSetChanged();
-        }else{
-            res=false;
-        }
-        return res;
-    }
+        UserHolder holder= new UserHolder();
 
-    private boolean canAddItem(User u){
-        boolean canAdd=true;
-        if(UsersHomeLIST.containsItem(u)){
-            canAdd=false;
-        }
-        return  canAdd;
-    }
+        holder.txvUserName=(TextView)rootView.findViewById(R.id.ITEM_HOME_edt_userName);
+        rootView.setTag(holder);
 
-    public boolean removeUser(User user){
-        this.userList.remove(user);
-        UsersHomeLIST.delete(user);
-        notifyDataSetChanged();
-
-        //debug
-        return true;
-    }
-
-    public void updateItem(){
-        this.userList.clear();
-        this.userList.addAll(UsersHomeLIST.getAll());
+        return rootView;
     }
 
     @Override
-    public int getItemCount() {
-        return this.nUsersonHome;
+    public void bindView(View view, Context context, Cursor cursor) {
+        UserHolder holder=(UserHolder)view.getTag();
+        holder.txvUserName.setText(cursor.getString(1));
     }
 
-    public static class HomeUsersHolder extends RecyclerView.ViewHolder{
+    class UserHolder{
         TextView txvUserName;
-
-        public HomeUsersHolder(View item){
-            super(item);
-            txvUserName=(TextView)item.findViewById(R.id.ITEM_HOME_edt_userName);
-        }
     }
+
 }

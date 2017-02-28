@@ -73,7 +73,6 @@
         <item>@string/home_title</item>
         <item>@string/expense_title</item>
         <item>@string/purchase_title</item>
-        <item>@string/clean_title</item>
     </string-array>
 
 </resources>

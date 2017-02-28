@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.jtcode.sharedfloor.R;
 import com.jtcode.sharedfloor.adapters.HomeAdapter;
@@ -18,7 +19,7 @@ import com.jtcode.sharedfloor.adapters.HomeAdapter;
 public class FragmentHome extends Fragment {
 
     private EditText edtHomeName;
-    private RecyclerView listUserOnHome;
+    private ListView listUserOnHome;
     private static HomeAdapter adapterHome;
 
     public static Fragment newInstance(Bundle args,HomeAdapter ahome){
@@ -40,9 +41,7 @@ public class FragmentHome extends Fragment {
         edtHomeName=(EditText)rootView.findViewById(R.id.F_HOME_edtNameHome);
         edtHomeName.setEnabled(false);
 
-        listUserOnHome=(RecyclerView)rootView.findViewById(R.id.F_HOME_ReciclerViewUseronHome);
-
-        listUserOnHome.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+        listUserOnHome=(ListView) rootView.findViewById(R.id.F_HOME_ListViewUseronHome);
         listUserOnHome.setAdapter(adapterHome);
 
         return rootView;
