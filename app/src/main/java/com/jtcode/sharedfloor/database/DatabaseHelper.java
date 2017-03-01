@@ -14,39 +14,25 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper{
+
     private static final int DATABASE_VERSION=1;
     private static final String DATABASE_NAME="Home.db";
-    private static DatabaseHelper databaseHelper;
-    private AtomicInteger mOpenCounter;
+    private static volatile DatabaseHelper databaseHelper;
     private SQLiteDatabase mDatabase;
-    private Context context;
 
 
-    private DatabaseHelper() {
+    public DatabaseHelper() {
         super(SharedFloorApplication.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public static synchronized DatabaseHelper getInstance(){
         if(databaseHelper == null)
-            databaseHelper = new DatabaseHelper(); //Se usa el de la aplicación por si la activity fuese null
+            databaseHelper = new DatabaseHelper();
 
         return databaseHelper;
     }
     public SQLiteDatabase getDatabase(){
         return mDatabase;
-    }
-
-    public synchronized SQLiteDatabase openDB(){
-        if(mOpenCounter.incrementAndGet()==1){
-            mDatabase=getWritableDatabase();
-        }
-        return mDatabase;
-    }
-
-    public synchronized void closeDB(){
-        if(mOpenCounter.decrementAndGet()==0)
-            mDatabase.close();
-
     }
 
     @Override

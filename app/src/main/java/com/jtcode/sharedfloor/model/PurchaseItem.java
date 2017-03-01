@@ -11,9 +11,14 @@ public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
     private String name;
     private boolean strike;
 
-    public PurchaseItem(String name){
+    public PurchaseItem(int id,String name,int strike){
+        this.id=id;
         this.name=name;
-        this.strike=false;
+
+        if(strike==1)
+            this.strike=true;
+        else
+            this.strike=false;
     }
 
     public boolean isStrike() {
@@ -23,6 +28,7 @@ public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
     public void setStrike(boolean strike) {
         this.strike = strike;
     }
+
 
     public String getName() {
         return name;

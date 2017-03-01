@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.jtcode.sharedfloor.model.Expense;
+import com.jtcode.sharedfloor.model.PurchaseItem;
 import com.jtcode.sharedfloor.model.User;
 import java.util.ArrayList;
 
@@ -13,6 +14,16 @@ import java.util.ArrayList;
  */
 
 public class DatabaseManager {
+    private static DatabaseManager instance;
+    private static DatabaseHelper databaseHelper;
+
+    public static DatabaseManager getInstance(){
+        if(instance==null){
+            instance=new DatabaseManager();
+            databaseHelper=new DatabaseHelper();
+        }
+        return instance;
+    }
 
     //users
     public int addUser(User user){
@@ -99,6 +110,45 @@ public class DatabaseManager {
     }
 
 
+    //purchase list
+
+    public int addPurchase(PurchaseItem p){
+        ContentValues params=new ContentValues();
+        params.put(DatabaseContract.PurchaseEntry.TABLE_NAME,p.getName());
+        SQLiteDatabase db=DatabaseHelper.getInstance().getDatabase();
+        return (int)db.insert(DatabaseContract.PurchaseEntry.TABLE_NAME,null,params);
+    }
+
+    public ArrayList<PurchaseItem> getAllPurchase(){
+        ArrayList<PurchaseItem> ptem= new ArrayList<>();
+
+        SQLiteDatabase db= DatabaseHelper.getInstance().getDatabase();
+        Cursor c= db.query(DatabaseContract.PurchaseEntry.TABLE_NAME,DatabaseContract.PurchaseEntry.ALL_COLS,
+                null,null,null,null,null);
+
+        if(c.moveToFirst()){
+            do {
+                PurchaseItem p=new PurchaseItem(c.getInt(0),c.getString(1),c.getInt(2));
+                ptem.add(p);
+            }while (c.moveToNext());
+        }
+        return ptem;
+    }
+
+    public void updateItem(PurchaseItem item){
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(DatabaseContract.PurchaseEntry.COLUMN_NAME,item.getName());
+        contentValues.put(DatabaseContract.PurchaseEntry.COLUMN_STRIKE,item.isStrike());
+        SQLiteDatabase db= DatabaseHelper.getInstance().getDatabase();
+        String[] whereargs={String.valueOf(item.getId())};
+        db.update(DatabaseContract.PurchaseEntry.TABLE_NAME,contentValues," "+DatabaseContract.PurchaseEntry._ID +" = ? ",whereargs);
+    }
+
+    public void removeItem(PurchaseItem item){
+        String[] whereargs={item.getName()};
+        SQLiteDatabase db=DatabaseHelper.getInstance().getDatabase();
+        db.delete(DatabaseContract.PurchaseEntry.TABLE_NAME," "+DatabaseContract.PurchaseEntry._ID+" = ?",whereargs);
+    }
 
 
     //utils
@@ -122,8 +172,6 @@ public class DatabaseManager {
         }
         return -1;
     }
-
-    //PurchaseList
 
 
 }

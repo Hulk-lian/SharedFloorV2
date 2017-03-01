@@ -35,8 +35,9 @@ public class DatabaseContract {
     public static class PurchaseEntry implements BaseColumns{
         public static final String TABLE_NAME="purchase";
         public static final String COLUMN_NAME="pur_name";
+        public static final String COLUMN_STRIKE="pur_strike";
         public static final String SQL_CREATE="CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ( "+BaseColumns._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                COLUMN_NAME+" TEXT NOT NULL )";
+                COLUMN_NAME+" TEXT UNIQUE NOT NULL, " +COLUMN_STRIKE+ " INTEGER NOT NULL )";
         public static final String SQL_DELETE="DROP TABLE IF EXISTS "+TABLE_NAME;
         public static final String[] ALL_COLS={BaseColumns._ID,TABLE_NAME};
 

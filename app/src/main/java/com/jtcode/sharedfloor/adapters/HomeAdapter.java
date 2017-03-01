@@ -5,37 +5,31 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.jtcode.sharedfloor.R;
+import com.jtcode.sharedfloor.model.User;
 
-public class HomeAdapter extends CursorAdapter{
+import java.util.ArrayList;
 
-    int layout;
+public class HomeAdapter extends ArrayAdapter<User>{
+
+    private Context context;
+    private ArrayList<User> userList;
+
+
+
     public HomeAdapter(Context context, int layout) {
-        super(context, null, layout);
-        this.layout=layout;
+        super(context, layout);
+        this.context=context;
+        userList= new ArrayList<>();
+        chargeList();
     }
-
-    @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        LayoutInflater inflater=LayoutInflater.from(context);
-
-        View rootView=inflater.inflate(layout,parent,false);
-
-        UserHolder holder= new UserHolder();
-
-        holder.txvUserName=(TextView)rootView.findViewById(R.id.ITEM_HOME_edt_userName);
-        rootView.setTag(holder);
-
-        return rootView;
-    }
-
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        UserHolder holder=(UserHolder)view.getTag();
-        holder.txvUserName.setText(cursor.getString(1));
+    private void chargeList(){
+        this.clear();
+        this.addAll();
     }
 
     class UserHolder{

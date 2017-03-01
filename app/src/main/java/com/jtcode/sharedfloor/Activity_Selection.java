@@ -2,6 +2,7 @@ package com.jtcode.sharedfloor;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import com.jtcode.sharedfloor.adapters.ExpenseAdapter;
 import com.jtcode.sharedfloor.adapters.HomeAdapter;
 import com.jtcode.sharedfloor.adapters.PurchaseAdapter;
 import com.jtcode.sharedfloor.adapters.ViewPagerAdapter;
+import com.jtcode.sharedfloor.database.DatabaseManager;
 import com.jtcode.sharedfloor.fragments.FragmentExpenses;
 import com.jtcode.sharedfloor.fragments.FragmentPurchaseList;
 import com.jtcode.sharedfloor.interfaces.CustomConstants;
@@ -32,7 +34,6 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
     ExpenseAdapter expenseAdapter;
     PurchaseAdapter purchaseAdapter;
     //
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
@@ -41,13 +42,27 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
 
     Expense expensetemp;
 
+    DatabaseManager datos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__selection);
+        //DB
+        datos=DatabaseManager.getInstance();
+
         init();
     }
+//region asinc
+    public class TaskTestData extends AsyncTask<Void,Void,Void>{
 
+
+    @Override
+    protected Void doInBackground(Void... params) {
+        return null;
+    }
+}
+    //endregion
     private void init(){
 
         //memopry to adapter
@@ -78,7 +93,6 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
             @Override
             public void onPageSelected(int position) {
@@ -91,6 +105,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
 
         //FAB
         fab=(FloatingActionButton)findViewById(R.id.A_SEL_FAB);
+
 
     }
 
