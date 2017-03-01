@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.jtcode.sharedfloor.database.DatabaseManager;
 import com.jtcode.sharedfloor.interfaces.CustomConstants;
 
 
@@ -15,12 +16,22 @@ import com.jtcode.sharedfloor.interfaces.CustomConstants;
 public class SharedFloorApplication extends Application {
     private static Context context;
 
+    DatabaseManager datos;
     public SharedFloorApplication(){
         super();
         context=this;
+        datos=DatabaseManager.getInstance();
     }
 
-    public static Context getContext(){return context;}
+    public static Context getContext(){
+        return context;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        datos.getDB();
+    }
 
     @Override
     public void onTerminate() {

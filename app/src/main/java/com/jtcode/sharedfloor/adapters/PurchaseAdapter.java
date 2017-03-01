@@ -30,6 +30,14 @@ public class PurchaseAdapter extends ArrayAdapter<PurchaseItem>{
         this.context=context;
     }
 
+    public boolean addItem(PurchaseItem item){
+        boolean res= true;
+        db.addPurchase(item);
+        this.add(item);
+        notifyDataSetChanged();
+        return res;
+    }
+
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -44,7 +52,7 @@ public class PurchaseAdapter extends ArrayAdapter<PurchaseItem>{
         else{
             holder=(PurchaseHolder)rootview.getTag();
         }
-        if(getItem(position).isStrike()){
+        if(!getItem(position).isStrike()){
             holder.txvItemName.setPaintFlags(holder.txvItemName.getPaintFlags()&(~ Paint.STRIKE_THRU_TEXT_FLAG));
         }
         else{

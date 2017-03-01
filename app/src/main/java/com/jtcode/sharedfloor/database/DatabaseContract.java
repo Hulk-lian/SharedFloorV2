@@ -39,7 +39,7 @@ public class DatabaseContract {
         public static final String SQL_CREATE="CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ( "+BaseColumns._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 COLUMN_NAME+" TEXT UNIQUE NOT NULL, " +COLUMN_STRIKE+ " INTEGER NOT NULL )";
         public static final String SQL_DELETE="DROP TABLE IF EXISTS "+TABLE_NAME;
-        public static final String[] ALL_COLS={BaseColumns._ID,TABLE_NAME};
+        public static final String[] ALL_COLS={BaseColumns._ID,COLUMN_NAME,COLUMN_STRIKE};
 
     }
 
