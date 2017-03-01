@@ -14,16 +14,20 @@ import java.util.ArrayList;
  */
 
 public class DatabaseManager {
-    private static DatabaseManager instance;
+    private static DatabaseManager instance= new DatabaseManager();
     private static DatabaseHelper databaseHelper;
 
     public static DatabaseManager getInstance(){
-        if(instance==null){
-            instance=new DatabaseManager();
+        if(databaseHelper==null){
             databaseHelper=new DatabaseHelper();
         }
         return instance;
     }
+
+    public SQLiteDatabase getDB(){
+        return databaseHelper.getWritableDatabase();
+    }
+
 
     //users
     public int addUser(User user){
@@ -31,13 +35,13 @@ public class DatabaseManager {
         params.put(DatabaseContract.UserEntry.COLUMN_NAME,user.getName());
         params.put(DatabaseContract.UserEntry.COLUMN_PASS,user.getPassword());
 
-        SQLiteDatabase database=DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase database=databaseHelper.getWritableDatabase();
         return (int)database.insert(DatabaseContract.UserEntry.TABLE_NAME,null,params);
     }
 
     public ArrayList<User> getAllUsers(){
         ArrayList<User> usuarios= new ArrayList<>();
-        SQLiteDatabase db=DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase db=databaseHelper.getWritableDatabase();
         Cursor cursor=db.query(DatabaseContract.UserEntry.TABLE_NAME,DatabaseContract.UserEntry.ALL_COLS,
                 null,null,null,null,null);
         if(cursor.moveToFirst()){
@@ -54,7 +58,7 @@ public class DatabaseManager {
 
     public void deleteUser(User user){
         String[] where={user.getName()};
-        SQLiteDatabase database= DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase database= databaseHelper.getWritableDatabase();
         database.delete(DatabaseContract.UserEntry.TABLE_NAME,DatabaseContract.UserEntry.COLUMN_NAME+" = ?",where);
     }
 
@@ -68,13 +72,13 @@ public class DatabaseManager {
         params.put(DatabaseContract.ExpenseEntry.COLUMN_AMOUNT,expense.getAmount());
         params.put(DatabaseContract.ExpenseEntry.COLUMN_PAID,idUser);
 
-        SQLiteDatabase database=DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase database=databaseHelper.getWritableDatabase();
         return (int)database.insert(DatabaseContract.ExpenseEntry.TABLE_NAME,null,params);
     }
 
     public ArrayList<Expense> getAllExpenses(){
         ArrayList<Expense> exptmp= new ArrayList<>();
-        SQLiteDatabase db=DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase db=databaseHelper.getWritableDatabase();
         Cursor cursor=db.query(DatabaseContract.ExpenseEntry.TABLE_NAME,DatabaseContract.ExpenseEntry.ALL_COLS,
                 null,null,null,null,null);
         if(cursor.moveToFirst()){
@@ -99,13 +103,13 @@ public class DatabaseManager {
 
         String[] whereArgs={String.valueOf(e.getId())};
 
-        SQLiteDatabase db=DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase db=databaseHelper.getWritableDatabase();
         db.update(DatabaseContract.ExpenseEntry.TABLE_NAME,params," "+DatabaseContract.ExpenseEntry._ID+" = ?",whereArgs);
     }
 
     public void deleteExpense(Expense e){
         String[] where={String.valueOf(e.getId())};
-        SQLiteDatabase database= DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase database= databaseHelper.getWritableDatabase();
         database.delete(DatabaseContract.ExpenseEntry.TABLE_NAME," "+DatabaseContract.ExpenseEntry._ID+" = ?",where);
     }
 
@@ -115,14 +119,14 @@ public class DatabaseManager {
     public int addPurchase(PurchaseItem p){
         ContentValues params=new ContentValues();
         params.put(DatabaseContract.PurchaseEntry.TABLE_NAME,p.getName());
-        SQLiteDatabase db=DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase db=databaseHelper.getWritableDatabase();
         return (int)db.insert(DatabaseContract.PurchaseEntry.TABLE_NAME,null,params);
     }
 
     public ArrayList<PurchaseItem> getAllPurchase(){
         ArrayList<PurchaseItem> ptem= new ArrayList<>();
 
-        SQLiteDatabase db= DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase db= databaseHelper.getWritableDatabase();
         Cursor c= db.query(DatabaseContract.PurchaseEntry.TABLE_NAME,DatabaseContract.PurchaseEntry.ALL_COLS,
                 null,null,null,null,null);
 
@@ -139,14 +143,14 @@ public class DatabaseManager {
         ContentValues contentValues=new ContentValues();
         contentValues.put(DatabaseContract.PurchaseEntry.COLUMN_NAME,item.getName());
         contentValues.put(DatabaseContract.PurchaseEntry.COLUMN_STRIKE,item.isStrike());
-        SQLiteDatabase db= DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase db= databaseHelper.getWritableDatabase();
         String[] whereargs={String.valueOf(item.getId())};
         db.update(DatabaseContract.PurchaseEntry.TABLE_NAME,contentValues," "+DatabaseContract.PurchaseEntry._ID +" = ? ",whereargs);
     }
 
     public void removeItem(PurchaseItem item){
         String[] whereargs={item.getName()};
-        SQLiteDatabase db=DatabaseHelper.getInstance().getDatabase();
+        SQLiteDatabase db=databaseHelper.getWritableDatabase();
         db.delete(DatabaseContract.PurchaseEntry.TABLE_NAME," "+DatabaseContract.PurchaseEntry._ID+" = ?",whereargs);
     }
 

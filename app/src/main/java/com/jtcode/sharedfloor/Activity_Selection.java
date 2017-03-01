@@ -51,14 +51,14 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         //DB
         datos=DatabaseManager.getInstance();
 
-        init();
+        new TaskTestData().execute();
+       // init();
     }
 //region asinc
     public class TaskTestData extends AsyncTask<Void,Void,Void>{
-
-
     @Override
     protected Void doInBackground(Void... params) {
+        datos.getDB();
         return null;
     }
 }

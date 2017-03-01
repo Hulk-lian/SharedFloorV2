@@ -17,22 +17,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final int DATABASE_VERSION=1;
     private static final String DATABASE_NAME="Home.db";
-    private static volatile DatabaseHelper databaseHelper;
-    private SQLiteDatabase mDatabase;
 
 
     public DatabaseHelper() {
         super(SharedFloorApplication.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
-    }
-
-    public static synchronized DatabaseHelper getInstance(){
-        if(databaseHelper == null)
-            databaseHelper = new DatabaseHelper();
-
-        return databaseHelper;
-    }
-    public SQLiteDatabase getDatabase(){
-        return mDatabase;
     }
 
     @Override
