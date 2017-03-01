@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 
 public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
-    private String id;
+    private int id;
     private String name;
     private boolean strike;
 
@@ -16,9 +16,34 @@ public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
         this.strike=false;
     }
 
+    public boolean isStrike() {
+        return strike;
+    }
+
+    public void setStrike(boolean strike) {
+        this.strike = strike;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     protected PurchaseItem(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         name = in.readString();
+        strike = in.readByte() != 0;
     }
 
     public static final Creator<PurchaseItem> CREATOR = new Creator<PurchaseItem>() {
@@ -33,38 +58,9 @@ public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
         }
     };
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public boolean getStrike(){
-        return this.strike;
-    }
-    public void setStrike(boolean strike){
-        this.strike=strike;
-    }
-
     @Override
-    public boolean equals(Object obj) {
-        boolean res=false;
-        PurchaseItem p;
-        if(obj!= null){
-            if(obj instanceof PurchaseItem){
-                p=(PurchaseItem)obj;
-                if(this.name.equalsIgnoreCase(p.name)){
-                    res=true;
-                }
-            }
-        }
-        return res;
+    public int compareTo(@NonNull PurchaseItem p) {
+        return this.name.compareToIgnoreCase(p.getName());
     }
 
     @Override
@@ -73,13 +69,9 @@ public class PurchaseItem implements Parcelable, Comparable<PurchaseItem>{
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(id);
-        parcel.writeString(name);
-    }
-
-    @Override
-    public int compareTo(@NonNull PurchaseItem p) {
-        return this.name.compareToIgnoreCase(p.getName());
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeByte((byte) (strike ? 1 : 0));
     }
 }

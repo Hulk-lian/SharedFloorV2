@@ -76,12 +76,9 @@ public class Activity_ExpenseManage extends AppCompatActivity{
         }
     }
     private void createExpense(){
-        DateFormat df=new SimpleDateFormat(CustomConstants.DATEFORMAT);
-        Date date= new Date();
         if(expenseTmp==null)
             expenseTmp=new Expense();
 
-            expenseTmp.setDateExpense(df.format(date));
             expenseTmp.setName(tilName.getEditText().getText().toString());
             expenseTmp.setAmount(Double.parseDouble(tilAmount.getEditText().getText().toString()));
             expenseTmp.setPaid(spnPaid.getSelectedItem().toString());

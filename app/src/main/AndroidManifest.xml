@@ -26,11 +26,6 @@
         <activity
             android:name=".Activity_ExpenseManage"
             android:screenOrientation="portrait"></activity>
-
-        <provider
-            android:name=".provider.Provider"
-            android:authorities="com.jtcode.sharedfloor"/>
-
     </application>
 
 </manifest>

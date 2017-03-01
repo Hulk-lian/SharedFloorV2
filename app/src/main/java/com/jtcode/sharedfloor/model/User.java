@@ -4,25 +4,20 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable{
+    private int Id;
     private String name;
     private String password;
 
-    protected User(Parcel in) {
-        name = in.readString();
-        password = in.readString();
+    public User() {
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
+    public int getId() {
+        return Id;
+    }
 
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
+    public void setId(int id) {
+        Id = id;
+    }
 
     public String getName() {
         return name;
@@ -40,11 +35,23 @@ public class User implements Parcelable{
         this.password = password;
     }
 
-
-    public User (String name,String password){
-        this.name=name;
-        this.password =password;
+    protected User(Parcel in) {
+        Id = in.readInt();
+        name = in.readString();
+        password = in.readString();
     }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -53,6 +60,7 @@ public class User implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(Id);
         dest.writeString(name);
         dest.writeString(password);
     }

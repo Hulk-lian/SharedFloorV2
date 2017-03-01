@@ -10,41 +10,25 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 
 
-public class Expense implements Parcelable, Comparable<Expense>{
+public class Expense implements Parcelable{
 
-    private String id;
+    private int id;
     private String name;
     private double amount;
     private double amountPerUser;
-    private String dateExpense;
     private String paid;//the user who paid the expense
 
     public Expense(){
 
     }
 
+
     protected Expense(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         name = in.readString();
         amount = in.readDouble();
         amountPerUser = in.readDouble();
-        dateExpense = in.readString();
         paid = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeDouble(amount);
-        dest.writeDouble(amountPerUser);
-        dest.writeString(dateExpense);
-        dest.writeString(paid);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<Expense> CREATOR = new Creator<Expense>() {
@@ -60,6 +44,24 @@ public class Expense implements Parcelable, Comparable<Expense>{
     };
 
     //region getter and setter
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAmountPerUser(int nUser){
+        if(nUser!=0)
+        this.amountPerUser=Math.round(this.amount/nUser);
+    }
+
+    public double getAmountPerUser() {
+        return amountPerUser;
+    }
+
     public String getName() {
         return name;
     }
@@ -76,13 +78,6 @@ public class Expense implements Parcelable, Comparable<Expense>{
         this.amount = amount;
     }
 
-    public double getAmountPerUser() {
-        return amountPerUser;
-    }
-    public void setAmountPerUser(int nUser){
-        this.amountPerUser=Math.round(this.amount/nUser);
-    }
-
     public String getPaid() {
         return paid;
     }
@@ -91,25 +86,7 @@ public class Expense implements Parcelable, Comparable<Expense>{
         this.paid = paid;
     }
 
-    public String getDateExpense() {
-        return dateExpense;
-    }
-
-    public void setDateExpense(String dateExpense) {
-        this.dateExpense = dateExpense;
-    }
 //endregion
-
-    //constructor
-    public Expense(String name,Double amount,String paid,int userscount,String dateExpense){
-        this.name=name;
-        this.amount=amount;
-        this.amountPerUser=amount/userscount;
-        this.paid=paid;
-        this.dateExpense=dateExpense;
-
-    }
-
 
     public static final Comparator<Expense> AMOUNT_COMPARATOR= new Comparator<Expense>() {
         @Override
@@ -118,27 +95,17 @@ public class Expense implements Parcelable, Comparable<Expense>{
         }
     };
 
-    public static final Comparator<Expense> DATE_SORT=new Comparator<Expense>() {
-        @Override
-        public int compare(Expense lhs, Expense rhs) {
-            DateFormat format= new SimpleDateFormat(CustomConstants.DATEFORMAT);
-            try {
-                return format.parse(rhs.getDateExpense()).compareTo(format.parse(lhs.getDateExpense()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return 0;
-        }
-    };
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
-    public int compareTo(Expense another) {
-        DateFormat format= new SimpleDateFormat(CustomConstants.DATEFORMAT);
-        try {
-            return format.parse(this.getDateExpense()).compareTo(format.parse(another.getDateExpense()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return 0;
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeDouble(amount);
+        dest.writeDouble(amountPerUser);
+        dest.writeString(paid);
     }
 }
