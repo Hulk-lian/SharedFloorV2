@@ -26,6 +26,7 @@ import com.jtcode.sharedfloor.interfaces.CustomConstants;
 import com.jtcode.sharedfloor.login.Activity_Login;
 import com.jtcode.sharedfloor.model.Expense;
 import com.jtcode.sharedfloor.model.PurchaseItem;
+import com.jtcode.sharedfloor.model.User;
 
 public class Activity_Selection extends AppCompatActivity implements FragmentPurchaseList.PurchaseListInteraction,FragmentExpenses.ExpenseInteraction{
 
@@ -137,7 +138,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         switch (viewPager.getCurrentItem()){
 
             case 0:
-
+                addUser();
                 break;
 
             case 1:
@@ -214,6 +215,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
             switch (requestCode) {
                 case CustomConstants.ADDEXPENSE:
                     expenseAdapter.addExpense((Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
+                    makeNotificationNew(CustomConstants.ADDEXPENSE);
                     break;
 
                 case CustomConstants.EDITEXPENSE:
@@ -242,6 +244,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
                 if (edtemp.getText().toString().trim().length() != 0) {
                     purchaseAdapter.addItem(new PurchaseItem(edtemp.getText().toString(),0));
                     showToast(getString(R.string.additem_snackbar)+": "+edtemp.getText().toString());
+                    makeNotificationNew(CustomConstants.ADDITEM);
                 }else{
                     showToast(getString(R.string.error_item_empty_name));
                 }
@@ -272,10 +275,58 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
     //add user
     public void addUser(){
 
+        View v=getLayoutInflater().inflate(R.layout.layout_additem_dialog,null);
+
+        final EditText edtemp=(EditText)v.findViewById(R.id.LD_ADD_PURCHASEITEM_edtAddItem);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(this.getString(R.string.addUser_dialog_title));
+        builder.setMessage(this.getString(R.string.addUser_dialog_message));
+        builder.setView(v);
+
+        builder.setPositiveButton(R.string.additem_btn_ok, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (edtemp.getText().toString().trim().length() != 0) {
+                    homeAdapter.addUser(new User(edtemp.getText().toString(),"passtmp"));
+                    showToast(getString(R.string.addUser_snackbar)+" "+edtemp.getText().toString());
+                    makeNotificationNew(CustomConstants.ADDUSER);
+                }else{
+                    showToast(getString(R.string.error_user_empty_name));
+                }
+            }
+        });
+
+        builder.show();
     }
+
+
 
     public void showToast(String mens){
         Snackbar.make(parent,mens,Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void makeNotificationNew(int from){
+        int icon=0;
+        String textcont=null;
+        String title=getString(R.string.app_name);
+        switch (from){
+            case CustomConstants.ADDUSER:
+                icon=R.drawable.ic_not_user;
+                textcont=getString(R.string.notification_adduser);
+                break;
+            case CustomConstants.ADDEXPENSE:
+                icon=R.drawable.ic_not_expense;
+                textcont=getString(R.string.notification_addexpense);
+                break;
+            case CustomConstants.ADDITEM:
+                icon=R.drawable.ic_not_purchase;
+                textcont=getString(R.string.notification_additem);
+                break;
+        }
+
+        MakeNotification.createNotification(this,icon,title,textcont);
     }
 
 

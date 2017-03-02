@@ -68,6 +68,14 @@
     <string name="deleteexpense_snackbar">Eliminado el gasto:</string>
     <string name="additem_snackbar">Añadido el elemento</string>
 
+    <string name="addUser_dialog_title">Añadir Usuario</string>
+    <string name="addUser_dialog_message">Añadir un usuario por su nombre a la casa</string>
+    <string name="error_user_empty_name">No es un nombre válido</string>
+    <string name="addUser_snackbar">Añadido corrrectamente:</string>
+    <string name="notification_adduser">Un usuario ha entrado en tu casa</string>
+    <string name="notification_addexpense">Hay un gasto nuevo</string>
+    <string name="notification_additem">Nuevo elemento en la lista</string>
+
 
     <string-array name="titlesTabs">
         <item>@string/home_title</item>

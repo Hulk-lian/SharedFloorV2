@@ -11,6 +11,11 @@ public class User implements Parcelable{
     public User() {
     }
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public int getId() {
         return Id;
     }
