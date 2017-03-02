@@ -19,17 +19,10 @@ public class HomeAdapter extends ArrayAdapter<User>{
     private Context context;
     private ArrayList<User> userList;
 
-
-
     public HomeAdapter(Context context, int layout) {
         super(context, layout);
         this.context=context;
         userList= new ArrayList<>();
-        chargeList();
-    }
-    private void chargeList(){
-        this.clear();
-        this.addAll();
     }
 
     class UserHolder{

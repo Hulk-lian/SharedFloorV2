@@ -10,12 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.jtcode.sharedfloor.R;
+import com.jtcode.sharedfloor.database.DatabaseManager;
 
 
 public class SpinnerAdapter extends ArrayAdapter<CharSequence> {
 
     public SpinnerAdapter(Context context) {
         super(context,R.layout.layout_spinner_item);
+        this.addAll(DatabaseManager.getInstance().getAllUsernames());
     }
 
     @NonNull

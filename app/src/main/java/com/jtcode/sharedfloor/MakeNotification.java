@@ -5,4 +5,5 @@ package com.jtcode.sharedfloor;
  */
 
 public class MakeNotification {
+    
 }

@@ -67,7 +67,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
 
         //memopry to adapter
         purchaseAdapter= new PurchaseAdapter(this);
-        //expenseAdapter= new ExpenseAdapter(this);
+        expenseAdapter= new ExpenseAdapter(this);
         homeAdapter= new HomeAdapter(this,R.layout.item_home_user);
 
         tabLayout=(TabLayout)findViewById(R.id.A_SEL_TabLayout);
@@ -213,11 +213,11 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case CustomConstants.ADDEXPENSE:
-                   // expenseAdapter.addItem((Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
+                    expenseAdapter.addExpense((Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
                     break;
 
                 case CustomConstants.EDITEXPENSE:
-                   // expenseAdapter.editItem(expensetemp, (Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
+                    expenseAdapter.updateExpernse((Expense) data.getParcelableExtra(CustomConstants.KEY_EXPENSE));
                     expensetemp=null;
                     break;
         }
@@ -240,7 +240,7 @@ public class Activity_Selection extends AppCompatActivity implements FragmentPur
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (edtemp.getText().toString().trim().length() != 0) {
-                   // purchaseAdapter.addItem(new PurchaseItem(edtemp.getText().toString()));
+                    purchaseAdapter.addItem(new PurchaseItem(edtemp.getText().toString(),0));
                     showToast(getString(R.string.additem_snackbar)+": "+edtemp.getText().toString());
                 }else{
                     showToast(getString(R.string.error_item_empty_name));

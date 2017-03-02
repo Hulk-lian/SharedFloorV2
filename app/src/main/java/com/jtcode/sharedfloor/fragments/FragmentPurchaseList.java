@@ -73,7 +73,7 @@ public class FragmentPurchaseList extends Fragment implements SendStuff.SendItem
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 PurchaseItem tmp = purchaseAdapter.getItem(i);
-                //purchaseAdapter.strikeItem(tmp, !tmp.getStrike());
+                purchaseAdapter.strikeItem(tmp, !tmp.isStrike());
             }
         });
 
@@ -96,7 +96,7 @@ public class FragmentPurchaseList extends Fragment implements SendStuff.SendItem
         builder.setPositiveButton(R.string.deleteitem_dialog_okbtn, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
-              // purchaseAdapter.removeItem(item);
+               purchaseAdapter.removeItem(item);
                 callBack.sendMensagePurchaseList(item.getName());
 
             }
@@ -121,7 +121,7 @@ public class FragmentPurchaseList extends Fragment implements SendStuff.SendItem
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_purchaseList_sort_alph:
-               // purchaseAdapter.sortAlph();
+                purchaseAdapter.sortAlph();
                 purchaseAdapter.notifyDataSetChanged();
                 break;
         }
@@ -146,7 +146,7 @@ public class FragmentPurchaseList extends Fragment implements SendStuff.SendItem
 
     @Override
     public void sendItem(PurchaseItem item) {
-      //  this.purchaseAdapter.addItem(item);
+       this.purchaseAdapter.addItem(item);
     }
 
     /**
@@ -160,7 +160,6 @@ public class FragmentPurchaseList extends Fragment implements SendStuff.SendItem
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface PurchaseListInteraction {
-        // TODO: Update argument type and name
         void sendMensagePurchaseList(String mens);
     }
 

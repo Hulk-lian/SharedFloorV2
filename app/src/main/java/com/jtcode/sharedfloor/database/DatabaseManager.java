@@ -30,6 +30,22 @@ public class DatabaseManager {
 
 
     //users
+    public ArrayList<CharSequence> getAllUsernames(){
+        ArrayList<CharSequence> usuarios= new ArrayList<>();
+        SQLiteDatabase db=databaseHelper.getWritableDatabase();
+        String[] columns={DatabaseContract.UserEntry.COLUMN_NAME};
+
+        Cursor cursor=db.query(DatabaseContract.UserEntry.TABLE_NAME,columns,
+                null,null,null,null,null);
+        if(cursor.moveToFirst()){
+            do{
+                CharSequence nameUser=cursor.getString(0);
+                usuarios.add(nameUser);
+            }while (cursor.moveToNext());
+        }
+        return usuarios;
+    }
+
     public int addUser(User user){
         ContentValues params= new ContentValues();
         params.put(DatabaseContract.UserEntry.COLUMN_NAME,user.getName());
@@ -95,7 +111,7 @@ public class DatabaseManager {
         return exptmp;
     }
 
-    public void UpdateExpense(Expense e){
+    public void updateExpense(Expense e){
         ContentValues params= new ContentValues();
         params.put(DatabaseContract.ExpenseEntry.COLUMN_NAME,e.getName());
         params.put(DatabaseContract.ExpenseEntry.COLUMN_AMOUNT,e.getAmount());
@@ -118,7 +134,8 @@ public class DatabaseManager {
 
     public int addPurchase(PurchaseItem p){
         ContentValues params=new ContentValues();
-        params.put(DatabaseContract.PurchaseEntry.TABLE_NAME,p.getName());
+        params.put(DatabaseContract.PurchaseEntry.COLUMN_NAME,p.getName());
+        params.put(DatabaseContract.PurchaseEntry.COLUMN_STRIKE,0);
         SQLiteDatabase db=databaseHelper.getWritableDatabase();
         return (int)db.insert(DatabaseContract.PurchaseEntry.TABLE_NAME,null,params);
     }
@@ -151,9 +168,30 @@ public class DatabaseManager {
     public void removeItem(PurchaseItem item){
         String[] whereargs={item.getName()};
         SQLiteDatabase db=databaseHelper.getWritableDatabase();
-        db.delete(DatabaseContract.PurchaseEntry.TABLE_NAME," "+DatabaseContract.PurchaseEntry._ID+" = ?",whereargs);
+        db.delete(DatabaseContract.PurchaseEntry.TABLE_NAME," "+DatabaseContract.PurchaseEntry.COLUMN_NAME+" = ?",whereargs);
     }
 
+    public ArrayList<PurchaseItem> getSorted(boolean asc){
+        ArrayList<PurchaseItem> ptem= new ArrayList<>();
+
+        SQLiteDatabase db= databaseHelper.getWritableDatabase();
+        Cursor c;
+        if(asc) {
+            c = db.query(DatabaseContract.PurchaseEntry.TABLE_NAME, DatabaseContract.PurchaseEntry.ALL_COLS, null, null,
+                    null, null, DatabaseContract.PurchaseEntry.DEFAULT_SORT + " ASC");
+        }else {
+            c = db.query(DatabaseContract.PurchaseEntry.TABLE_NAME, DatabaseContract.PurchaseEntry.ALL_COLS,null,null,
+                    null,null,DatabaseContract.PurchaseEntry.DEFAULT_SORT+" DESC");
+        }
+
+        if(c.moveToFirst()){
+            do {
+                PurchaseItem p=new PurchaseItem(c.getInt(0),c.getString(1),c.getInt(2));
+                ptem.add(p);
+            }while (c.moveToNext());
+        }
+        return ptem;
+    }
 
     //utils
 
@@ -170,12 +208,11 @@ public class DatabaseManager {
     private int getIDUserbyName(String userName){
         ArrayList<User> tmp=this.getAllUsers();
         for(User u: tmp){
-            if(u.getName()==userName){
+            if(u.getName().equals(userName)){
                 return u.getId();
             }
         }
         return -1;
     }
-
 
 }

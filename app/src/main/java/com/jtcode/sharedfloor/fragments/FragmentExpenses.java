@@ -49,9 +49,7 @@ public class FragmentExpenses extends Fragment{
 
         listExpenses=(ListView)rootView.findViewById(R.id.F_EXPENSE_list);
 
-        //expenseAdapter= new ExpenseAdapter(rootView.getContext());
-
-       // listExpenses.setAdapter(expenseAdapter);
+        listExpenses.setAdapter(expenseAdapter);
 
         return rootView;
     }
@@ -63,14 +61,14 @@ public class FragmentExpenses extends Fragment{
         listExpenses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-             //   callBack.editExpense(expenseAdapter.getItem(position));
+                callBack.editExpense(expenseAdapter.getItem(position));
             }
         });
 
         listExpenses.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            //    confirmation(expenseAdapter.getItem(position));
+                confirmation(expenseAdapter.getItem(position));
                 return true;
             }
         });
@@ -85,7 +83,7 @@ public class FragmentExpenses extends Fragment{
         builder.setPositiveButton(R.string.deleteitem_dialog_okbtn, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
-             //   expenseAdapter.removeItem(expense);
+               expenseAdapter.removeExpernse(expense);
                 callBack.sendMensageExpense(expense.getName());
             }
         });

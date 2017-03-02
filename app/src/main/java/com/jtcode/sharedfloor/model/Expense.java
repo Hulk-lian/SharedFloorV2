@@ -55,7 +55,7 @@ public class Expense implements Parcelable{
 
     public void setAmountPerUser(int nUser){
         if(nUser!=0)
-        this.amountPerUser=Math.round(this.amount/nUser);
+        this.amountPerUser=this.amount/nUser;
     }
 
     public double getAmountPerUser() {

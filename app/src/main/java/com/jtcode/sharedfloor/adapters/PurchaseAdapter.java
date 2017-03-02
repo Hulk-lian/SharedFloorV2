@@ -38,6 +38,35 @@ public class PurchaseAdapter extends ArrayAdapter<PurchaseItem>{
         return res;
     }
 
+    public boolean removeItem(PurchaseItem item){
+        boolean res=true;
+        remove(item);
+        db.removeItem(item);
+        notifyDataSetChanged();
+        return res;
+    }
+
+    public void updateItems(){
+        this.clear();
+        this.addAll(db.getAllPurchase());
+        notifyDataSetChanged();
+    }
+
+    public void strikeItem(PurchaseItem item,boolean strike){
+        this.getItem(this.getPosition(item)).setStrike(strike);
+        db.updateItem(item);
+        notifyDataSetChanged();
+    }
+
+    //sort item
+    public void sortAlph(){
+        ASC=!ASC;
+        this.clear();
+        this.addAll(db.getSorted(ASC));
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
