@@ -33,7 +33,7 @@ public interface CustomConstants {
     String PASS="passord";
 
     //links
-    String urlAbout="https://www.google.es";
+    String urlAbout="https://jtcode.ncatz.com/aboutsf/";
 
     //format date
     String DATEFORMAT="yyyy/MM/dd HH:mm:ss";
