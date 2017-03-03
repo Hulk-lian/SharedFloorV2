@@ -61,7 +61,7 @@
     <string name="cleanBTNconfig">Configurar</string>
     <string name="euro">€</string>
     <string name="deleteMens">Eliminado:</string>
-    <string name="action_close">Cerrar Sessón</string>
+    <string name="action_close">Cerrar Sesión</string>
     <string name="action_sortbyalph">Orden alfabetico</string>
     <string name="deleteexpense_dialog_title">Eliminar Gasto</string>
     <string name="deleteexpense_dialog_mens">Eliminar el gasto:</string>

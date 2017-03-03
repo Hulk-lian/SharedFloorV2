@@ -18,7 +18,7 @@ public class MakeNotification {
                 .setContentText(content);
         Intent notIntentIntent=new Intent(context,Activity_Selection.class);
         PendingIntent pendingIntent=PendingIntent.getActivity(context,0,notIntentIntent,0);
-     builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(pendingIntent);
 
         NotificationManager notificationManager=(NotificationManager)SharedFloorApplication.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1,builder.build());
